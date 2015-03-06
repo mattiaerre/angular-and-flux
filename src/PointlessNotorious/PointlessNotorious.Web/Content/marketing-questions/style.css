@@ -1,0 +1,14 @@
+﻿body {
+    font-family: sans-serif;
+}
+
+.main {
+    background-color: #eee;
+    padding: 0.5em;
+    float: left;
+}
+
+.answers {
+    background-color: #ddd;
+    padding: 0.5em;
+}

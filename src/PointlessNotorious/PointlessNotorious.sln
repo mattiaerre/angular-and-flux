@@ -1,9 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointlessNotorious.Web", "PointlessNotorious.Web\PointlessNotorious.Web.csproj", "{C88F4E8C-BCCD-4D16-AF5D-F231759B11BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointlessNotorious.Domain", "PointlessNotorious.Domain\PointlessNotorious.Domain.csproj", "{09F68943-6E3E-4D2F-B06A-F837E52B34D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointlessNotorious.Domain.Unit.Tests", "PointlessNotorious.Domain.Unit.Tests\PointlessNotorious.Domain.Unit.Tests.csproj", "{A7D1ABD4-25F1-494C-A1CA-A636B63117DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{9332BD83-4404-4F28-8B16-4853DBD1BB72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{8B273086-0A68-42BB-9D7C-38B60217B736}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointlessNotorious.Infrastructure", "PointlessNotorious.Infrastructure\PointlessNotorious.Infrastructure.csproj", "{3257130B-52B7-45B6-A9CA-06B38C0F6BFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +25,25 @@ Global
 		{C88F4E8C-BCCD-4D16-AF5D-F231759B11BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C88F4E8C-BCCD-4D16-AF5D-F231759B11BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C88F4E8C-BCCD-4D16-AF5D-F231759B11BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09F68943-6E3E-4D2F-B06A-F837E52B34D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09F68943-6E3E-4D2F-B06A-F837E52B34D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09F68943-6E3E-4D2F-B06A-F837E52B34D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09F68943-6E3E-4D2F-B06A-F837E52B34D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7D1ABD4-25F1-494C-A1CA-A636B63117DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7D1ABD4-25F1-494C-A1CA-A636B63117DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7D1ABD4-25F1-494C-A1CA-A636B63117DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7D1ABD4-25F1-494C-A1CA-A636B63117DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3257130B-52B7-45B6-A9CA-06B38C0F6BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3257130B-52B7-45B6-A9CA-06B38C0F6BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3257130B-52B7-45B6-A9CA-06B38C0F6BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3257130B-52B7-45B6-A9CA-06B38C0F6BFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{09F68943-6E3E-4D2F-B06A-F837E52B34D0} = {9332BD83-4404-4F28-8B16-4853DBD1BB72}
+		{A7D1ABD4-25F1-494C-A1CA-A636B63117DC} = {9332BD83-4404-4F28-8B16-4853DBD1BB72}
+		{3257130B-52B7-45B6-A9CA-06B38C0F6BFC} = {8B273086-0A68-42BB-9D7C-38B60217B736}
 	EndGlobalSection
 EndGlobal

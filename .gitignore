@@ -1,7 +1,9 @@
-/src/PointlessNotorious/packages
-*.suo
-*.user
-_ReSharper.*
 bin
 obj
+packages
+_ReSharper.*
 *.ncrunchproject
+node_modules
+*.cache
+*.suo
+*.user
