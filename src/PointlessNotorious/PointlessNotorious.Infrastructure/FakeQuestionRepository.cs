@@ -1,12 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using PointlessNotorious.Domain;
 
 namespace PointlessNotorious.Infrastructure
 {
-    public class FakeQuestionRepository : IQuestionRepository
+    public class FakeQuestionRepository : IQuestionRepository<Guid>
     {
-        public IEnumerable<IQuestion> FindAll()
+        private static IEnumerable<IQuestion> _data;
+        private IEnumerable<IQuestion> Data
+        {
+            get
+            {
+                if (_data == null)
+                    _data = MakeData();
+                return _data;
+            }
+        }
+
+        private IEnumerable<IQuestion> MakeData()
         {
             return new List<IQuestion>
             {
@@ -17,6 +29,16 @@ namespace PointlessNotorious.Infrastructure
                 new Question(Guid.NewGuid(), "What are your hobbies?", QuestionType.MultipleChoice, 3, 
                     new List<IAnswer> { new Answer(Guid.NewGuid(), "Health & fitness"), new Answer(Guid.NewGuid(), "Holidays"), new Answer(Guid.NewGuid(), "Video games"), new Answer(Guid.NewGuid(), "Movies") }),
             };
+        }
+
+        public IEnumerable<IQuestion> FindAll()
+        {
+            return Data;
+        }
+
+        public IQuestion FindById(Guid id)
+        {
+            return Data.FirstOrDefault(e => e.Id == id);
         }
     }
 }

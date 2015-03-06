@@ -40,10 +40,26 @@ namespace PointlessNotorious.Domain.Unit.Tests
 
             IQuestion question = new Question(Guid.NewGuid(), text, questionType, order, answers);
 
-            Assert.AreEqual(questionType, question.QuestionType);
+            Assert.AreEqual(questionType, question.Type);
             Assert.AreEqual(text, question.Text);
             Assert.AreEqual(order, question.Order);
             Assert.AreEqual(numberOfAnswers, question.Answers.Count());
+        }
+
+        [Test]
+        public void It_Can_Be_Skipped()
+        {
+            var guid = Guid.NewGuid();
+            var question = new Question(guid, "TEST", QuestionType.BooleanChoice, 3, Enumerable.Empty<IAnswer>());
+            question.Raise += e =>
+            {
+                var domainEvent = e;
+                Assert.NotNull(domainEvent);
+                Assert.AreEqual(typeof(QuestionSkipped), domainEvent.GetType());
+                Assert.That(((QuestionSkipped)domainEvent).Message.Contains(guid.ToString()));
+            };
+
+            question.Skip();
         }
     }
 }

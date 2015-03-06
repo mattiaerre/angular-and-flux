@@ -21,6 +21,8 @@
 
         $scope.skip = function (questionId) {
             $log.info('command: ' + commands.QUESTION_SKIP + ', questionId: ' + questionId);
+
+            $http.post(url, { 'questionId': questionId });
         };
     };
 

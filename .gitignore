@@ -3,6 +3,7 @@ obj
 packages
 _ReSharper.*
 *.ncrunchproject
+*.ncrunchsolution
 node_modules
 *.cache
 *.suo

@@ -2,8 +2,9 @@
 
 namespace PointlessNotorious.Domain
 {
-    public interface IQuestionRepository
+    public interface IQuestionRepository<in T>
     {
         IEnumerable<IQuestion> FindAll();
+        IQuestion FindById(T id);
     }
 }
