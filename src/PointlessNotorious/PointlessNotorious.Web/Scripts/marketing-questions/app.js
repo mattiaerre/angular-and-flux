@@ -1,6 +1,3 @@
-﻿//var Dispatcher = require('flux').Dispatcher;
-//require('main-controller');
+﻿var app = angular.module('marketing-questions', ['cgBusy']);
 
-(function () {
-    var app = angular.module('marketing-questions', []);
-}());
+var config = { apiUrl: '/api/marketingquestions', commands: { QUESTION_NEXT: 'question-next', QUESTION_SKIP: 'question-skip' } };

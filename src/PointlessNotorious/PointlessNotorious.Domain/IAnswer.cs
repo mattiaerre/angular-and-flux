@@ -1,8 +1,10 @@
 ﻿using System;
+using EDE.Core.Entities;
 
 namespace PointlessNotorious.Domain
 {
-    public interface IAnswer : IId<Guid>, IText
+    // info: is this an entity or a value object?
+    public interface IAnswer : IEntity<Guid>, IText
     {
     }
 }

@@ -12,3 +12,13 @@
     background-color: #ddd;
     padding: 0.5em;
 }
+
+.widget {
+    background-color: #efe;
+    padding: 0.5em;
+    float: left;
+}
+
+.question-heading, .question-text, .question-control, .question-footer {
+    padding: 0.25em;
+}

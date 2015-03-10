@@ -1,30 +1,31 @@
-﻿(function () {
+﻿(function (app) {
     // see: https://github.com/cgross/angular-busy
-
-    var app = angular.module('marketing-questions', ['cgBusy']);
+    //var app = angular.module('marketing-questions', ['cgBusy']);
 
     var MainController = function ($scope, $http, $q, $interval, $log) {
-        var commands = { QUESTION_NEXT: 'question-next', QUESTION_SKIP: 'question-skip' };
+        var url = config.apiUrl; // todo: inject this ???
+        var commands = config.commands; // todo: inject this ???
 
         $scope.title = 'Marketing Questions';
 
-        var url = '/api/marketingquestions';
         $scope.promise = $http.get(url).then(function (response) {
             $log.info(response.data);
 
             $scope.questions = response.data;
         });
 
-        $scope.next = function (questionId) {
-            $log.info('command: ' + commands.QUESTION_NEXT + ', questionId: ' + questionId);
+        $scope.next = function (question) {
+            $log.info('command: ' + commands.QUESTION_NEXT + ', questionId: ' + question.Id);
+
+            $http.post(url, { 'command': commands.QUESTION_SKIP, 'questionId': question.Id, 'theAnswer': question.TheAnswer });
         };
 
-        $scope.skip = function (questionId) {
-            $log.info('command: ' + commands.QUESTION_SKIP + ', questionId: ' + questionId);
+        $scope.skip = function (question) {
+            $log.info('command: ' + commands.QUESTION_SKIP + ', questionId: ' + question.Id);
 
-            $http.post(url, { 'questionId': questionId });
+            $http.post(url, { 'command': commands.QUESTION_SKIP, 'questionId': question.Id });
         };
     };
 
     app.controller('MainController', MainController);
-}());
+}(app));

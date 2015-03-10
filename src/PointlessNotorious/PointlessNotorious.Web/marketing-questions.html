@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Marketing Questions</title>
-    <script data-require="angular.js@*" data-semver="1.3.1" src="//code.angularjs.org/1.3.1/angular.js"></script>
+    <script data-require="angular.js@*" data-semver="1.3.14" src="//code.angularjs.org/1.3.14/angular.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-busy/4.1.2/angular-busy.js"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/angular-busy/4.1.2/angular-busy.css" rel="stylesheet">
@@ -14,11 +14,12 @@
 
     <script src="Scripts/marketing-questions/app.js"></script>
     <script src="Scripts/marketing-questions/main-controller.js"></script>
+    <script src="Scripts/marketing-questions/widget-controller.js"></script>
 
     <link href="Content/marketing-questions/style.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="main" ng-controller="MainController">
+    <!--<div class="main" ng-controller="MainController">
         <h1>{{title}}</h1>
         <div cg-busy="promise"></div>
         <ul ng-repeat="question in questions">
@@ -26,16 +27,43 @@
                 <div>
                     {{question.Text}} <small>type: {{question.Type}}</small>
                     <div class="answers">
-                        <ul ng-repeat="answer in question.Answers">
-                            <li>{{answer.Text}}</li>
-                        </ul>
+                        <select ng-model="question.TheAnswer" ng-options="answer.Text for answer in question.Answers" ng-selected="question.TheAnswer"></select>
                     </div>
                     <div><span>Question <b>{{question.Order}}</b> of {{questions.length}}</span></div>
-                    <div><button ng-click="next(question.Id)">Next</button></div>
-                    <div><a href="" ng-click="skip(question.Id)">Skip</a></div>
+                    <div><button ng-click="next(question)">Next</button></div>
+                    <div><a href="" ng-click="skip(question)">Skip</a></div>
                 </div>
             </li>
         </ul>
+    </div>-->
+
+    <div class="widget" ng-controller="WidgetController">
+        <h1>{{title}}</h1>
+        <div class="question-heading">{{heading}}</div>
+        <div cg-busy="promise"></div>
+        <div ng-if="question.Type == 0">
+            [todo: what to show when no more questions to answer?]
+        </div>
+        <div ng-if="question.Type != 0">
+            <div class="question-text">{{question.Text}}</div>
+            <div class="question-control">
+                <div ng-if="question.Type == 1">
+                    <button ng-click="answer(question.Answers[0])">{{question.Answers[0].Text}}</button>
+                    <button ng-click="answer(question.Answers[1])">{{question.Answers[1].Text}}</button>
+                </div>
+                <div ng-if="question.Type == 2 || question.Type == 3">
+                    <select ng-model="question.TheAnswer" ng-options="answer.Text for answer in question.Answers"></select>
+                </div>
+                <!--<div ng-if="question.Type == 3">
+                    <h3>MultipleChoice</h3>
+                </div>-->
+            </div>
+            <div class="question-footer">
+                <span>Question <b>{{question.Order}}</b> of {{question.Total}}</span>
+                <div><a href="" ng-click="next(question)">Next [todo: need to update design]</a></div>
+                <div><a href="" ng-click="skip(question)">Skip this question</a></div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

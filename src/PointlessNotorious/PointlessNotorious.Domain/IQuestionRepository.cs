@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PointlessNotorious.Domain
 {
-    public interface IQuestionRepository<in T>
+    public interface IQuestionRepository
     {
         IEnumerable<IQuestion> FindAll();
-        IQuestion FindById(T id);
+        IQuestion FindById(Guid id);
+        void Update(IQuestion question);
     }
 }
