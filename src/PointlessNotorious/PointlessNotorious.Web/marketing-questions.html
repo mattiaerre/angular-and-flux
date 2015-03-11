@@ -10,8 +10,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-busy/4.1.2/angular-busy.js"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/angular-busy/4.1.2/angular-busy.css" rel="stylesheet">
 
-    <!--<script data-main="scripts/marketing-questions/app" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.16/require.js"></script>-->
-
     <script src="Scripts/marketing-questions/app.js"></script>
     <script src="Scripts/marketing-questions/main-controller.js"></script>
     <script src="Scripts/marketing-questions/widget-controller.js"></script>
@@ -19,37 +17,21 @@
     <link href="Content/marketing-questions/style.css" rel="stylesheet" />
 </head>
 <body>
-    <!--<div class="main" ng-controller="MainController">
-        <h1>{{title}}</h1>
-        <div cg-busy="promise"></div>
-        <ul ng-repeat="question in questions">
-            <li>
-                <div>
-                    {{question.Text}} <small>type: {{question.Type}}</small>
-                    <div class="answers">
-                        <select ng-model="question.TheAnswer" ng-options="answer.Text for answer in question.Answers" ng-selected="question.TheAnswer"></select>
-                    </div>
-                    <div><span>Question <b>{{question.Order}}</b> of {{questions.length}}</span></div>
-                    <div><button ng-click="next(question)">Next</button></div>
-                    <div><a href="" ng-click="skip(question)">Skip</a></div>
-                </div>
-            </li>
-        </ul>
-    </div>-->
-
     <div class="widget" ng-controller="WidgetController">
         <h1>{{title}}</h1>
         <div class="question-heading">{{heading}}</div>
         <div cg-busy="promise"></div>
         <div ng-if="question.Type == 0">
-            [todo: what to show when no more questions to answer?]
+            <div class="question-no-more">
+                [todo: what to show when no more questions to answer?]
+            </div>
         </div>
         <div ng-if="question.Type != 0">
             <div class="question-text">{{question.Text}}</div>
             <div class="question-control">
                 <div ng-if="question.Type == 1">
-                    <button ng-click="answer(question.Answers[0])">{{question.Answers[0].Text}}</button>
-                    <button ng-click="answer(question.Answers[1])">{{question.Answers[1].Text}}</button>
+                    <button ng-click="question.TheAnswer = question.Answers[0]">{{question.Answers[0].Text}}</button>
+                    <button ng-click="question.TheAnswer = question.Answers[1]">{{question.Answers[1].Text}}</button>
                 </div>
                 <div ng-if="question.Type == 2 || question.Type == 3">
                     <select ng-model="question.TheAnswer" ng-options="answer.Text for answer in question.Answers"></select>

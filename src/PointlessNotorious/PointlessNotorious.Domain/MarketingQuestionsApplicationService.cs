@@ -23,10 +23,19 @@ namespace PointlessNotorious.Domain
             return _questionRepository.FindById(id);
         }
 
-        public IQuestion GetNext()
+        public IQuestion GetNext(int startFrom)
         {
-            var next = _questionRepository.FindAll().OrderBy(e => e.Order).FirstOrDefault(e => e.IsAlreadyAnswered == false);
-            return next ?? new NullQuestion(string.Empty);
+            var questions = _questionRepository.FindAll().Where(e => e.IsAlreadyAnswered == false).ToList();
+            if (questions.Any())
+            {
+                foreach (var question in questions)
+                {
+                    if (question.Order >= startFrom + 1)
+                        return question;
+                }
+                return questions.First();
+            }
+            return new NullQuestion(string.Empty);;
         }
 
         public void Answer(IQuestion question)

@@ -7,7 +7,7 @@ namespace PointlessNotorious.Domain
     {
         IEnumerable<IQuestion> GetAll();
         IQuestion GetById(Guid id);
-        IQuestion GetNext();
+        IQuestion GetNext(int startFrom);
         void Answer(IQuestion question);
     }
 }

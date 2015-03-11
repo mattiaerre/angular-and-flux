@@ -54,7 +54,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="QuestionAnswered.cs" />
-    <Compile Include="QuestionFactory.cs" />
     <Compile Include="QuestionSkipped.cs" />
     <Compile Include="QuestionType.cs" />
   </ItemGroup>

@@ -18,7 +18,14 @@ namespace PointlessNotorious.Domain.Unit.Tests
         {
             _questionRepository = Substitute.For<IQuestionRepository>();
 
-            _questionRepository.FindAll().Returns(new List<IQuestion> { Substitute.For<IQuestion>(), Substitute.For<IQuestion>(), Substitute.For<IQuestion>() });
+            var questionOne = Substitute.For<IQuestion>();
+            questionOne.Order.Returns(1);
+            var questionTwo = Substitute.For<IQuestion>();
+            questionTwo.Order.Returns(2);
+            var questionThree = Substitute.For<IQuestion>();
+            questionThree.Order.Returns(3);
+
+            _questionRepository.FindAll().Returns(new List<IQuestion> { questionOne, questionTwo, questionThree });
 
             _service = new MarketingQuestionsApplicationService(_questionRepository);
         }
@@ -52,6 +59,19 @@ namespace PointlessNotorious.Domain.Unit.Tests
             value.questionId = Guid.NewGuid().ToString();
 
             // todo !!!
+        }
+
+        [TestCase(0, 1)]
+        public void It_Should_Be_Able_To_Get_Next(int startFrom, int expected)
+        {
+            // based on order
+            // based on already answered
+            // no index == get the very first one not answered (circular buffer)
+            // index == get the very first one not answered (circular buffer) greater than the order passed
+
+            var question = _service.GetNext(startFrom);
+
+            Assert.AreEqual(expected, question.Order);
         }
     }
 }

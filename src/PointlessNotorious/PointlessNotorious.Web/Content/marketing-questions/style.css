@@ -19,6 +19,6 @@
     float: left;
 }
 
-.question-heading, .question-text, .question-control, .question-footer {
+.question-heading, .question-text, .question-control, .question-footer, .question-no-more {
     padding: 0.25em;
 }
