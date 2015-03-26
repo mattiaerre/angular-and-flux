@@ -1,0 +1,1 @@
+﻿var define = function (dependendencies, module) { };

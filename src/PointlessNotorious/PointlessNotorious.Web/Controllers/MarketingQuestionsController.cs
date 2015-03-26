@@ -9,7 +9,7 @@ namespace PointlessNotorious.Web.Controllers
 {
     // see: http://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api
 
-    [EnableCors(origins: "http://local.mcfc.co.uk", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://local.mcfc.co.uk,http://local.supporters.mcfc.co.uk", headers: "*", methods: "*")]
     public class MarketingQuestionsController : ApiController
     {
         private readonly IMarketingQuestionsApplicationService _applicationService;
