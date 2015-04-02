@@ -8,7 +8,14 @@
     <div ng-app="streaming-knife">
         <div ng-controller="TextArea as vm">
             <h1>{{vm.title}}</h1>
-            <textarea rows="5" cols="25" ng-model="vm.data" ng-change="vm.writing()"></textarea>
+            <div>
+                <textarea rows="5" cols="25" ng-model="vm.data" ng-change="vm.writing()"></textarea>
+            </div>
+            <button ng-click="vm.send()">Send</button>
+        </div>
+
+        <div ng-controller="Inbox as vm">
+            <h2>{{vm.message}}</h2>
         </div>
     </div>
 </body>

@@ -17,6 +17,7 @@ require(['angular', 'common'], function (angular) {
     angular.module(appName).service('dispatcher', Common.Dispatcher);
     angular.module(appName).service('logger', Common.Logger);
     angular.module(appName).controller('TextArea', Common.TextArea);
+    angular.module(appName).controller('Inbox', Common.Inbox);
 
     angular.module(appName).run(bootstrap);
 

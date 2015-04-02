@@ -65,10 +65,12 @@
     <Content Include="client\app\common\common.min.js">
       <DependentUpon>common.js</DependentUpon>
     </Content>
+    <Content Include="client\app\common\inbox-controller.js" />
     <Content Include="client\app\common\logger.js" />
     <Content Include="client\app\common\main.js" />
     <Content Include="client\app\common\text-area-controller.js.map" />
     <Content Include="client\app\common\logger.js.map" />
+    <Content Include="client\app\common\inbox-controller.js.map" />
     <Content Include="client\app\common\common.js.bundle" />
     <Content Include="client\app\common\common.min.js.map">
       <DependentUpon>common.min.js</DependentUpon>
@@ -105,6 +107,7 @@
   <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="client\app\common\dispatcher.ts" />
+    <TypeScriptCompile Include="client\app\common\inbox-controller.ts" />
     <TypeScriptCompile Include="client\app\common\logger.ts" />
     <TypeScriptCompile Include="client\app\common\payload.ts" />
     <TypeScriptCompile Include="client\app\common\text-area-controller.ts" />

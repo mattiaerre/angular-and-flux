@@ -11,6 +11,7 @@
   <!--The order of the <file> elements determines the order of the files in the bundle.-->
   <files>
     <file>/client/app/common/dispatcher.js</file>
+    <file>/client/app/common/inbox-controller.js</file>
     <file>/client/app/common/logger.js</file>
     <file>/client/app/common/payload.js</file>
     <file>/client/app/common/text-area-controller.js</file>

@@ -71,6 +71,27 @@ var Common;
     Common.Dispatcher = Dispatcher;
 })(Common || (Common = {}));
 //# sourceMappingURL=dispatcher.js.map
+///#source 1 1 /client/app/common/inbox-controller.js
+var Common;
+(function (Common) {
+    var Inbox = (function () {
+        function Inbox(dispatcher) {
+            this.dispatcher = dispatcher;
+            this.message = '';
+            this.init();
+        }
+        Inbox.prototype.init = function () {
+            var _this = this;
+            this.dispatcher.register(function (payload) {
+                if (payload.actionType == 'sending')
+                    _this.message = payload.data;
+            });
+        };
+        return Inbox;
+    })();
+    Common.Inbox = Inbox;
+})(Common || (Common = {}));
+//# sourceMappingURL=inbox-controller.js.map
 ///#source 1 1 /client/app/common/logger.js
 var Common;
 (function (Common) {
@@ -105,10 +126,24 @@ var Common;
 })(Common || (Common = {}));
 //# sourceMappingURL=payload.js.map
 ///#source 1 1 /client/app/common/text-area-controller.js
+var __extends = this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    __.prototype = b.prototype;
+    d.prototype = new __();
+};
 var Common;
 (function (Common) {
-    var TextArea = (function () {
+    var Base = (function () {
+        function Base() {
+        }
+        return Base;
+    })();
+    Common.Base = Base;
+    var TextArea = (function (_super) {
+        __extends(TextArea, _super);
         function TextArea(dispatcher) {
+            _super.call(this);
             this.dispatcher = dispatcher;
             this.title = 'Hi man!';
             this.data = null;
@@ -116,8 +151,11 @@ var Common;
         TextArea.prototype.writing = function () {
             this.dispatcher.dispatch(new Common.Payload('writing', this.data));
         };
+        TextArea.prototype.send = function () {
+            this.dispatcher.dispatch(new Common.Payload('sending', this.data));
+        };
         return TextArea;
-    })();
+    })(Base);
     Common.TextArea = TextArea;
 })(Common || (Common = {}));
 //# sourceMappingURL=text-area-controller.js.map
