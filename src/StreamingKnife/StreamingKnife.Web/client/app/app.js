@@ -1,4 +1,6 @@
-﻿define(['angular', 'math-engine', 'main-controller'], function (angular) {
+﻿'use strict';
+
+define(['angular', 'math-engine', 'main-controller'], function (angular) {
     //var appName = 'streaming-knife';
     //angular.module(appName, []);
 

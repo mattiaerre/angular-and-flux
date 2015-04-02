@@ -9,8 +9,8 @@
 };
 
 define(['angular'], function(angular) {
-    //var appName = 'streaming-knife';
-    //angular.module(appName, []);
+    var appName = 'streaming-knife';
+    angular.module(appName, []);
 
     angular.module('streaming-knife').factory('mathEngine', MathEngine);
 });
