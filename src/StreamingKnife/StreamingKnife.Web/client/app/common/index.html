@@ -10,44 +10,25 @@
         (function () {
             // angular
             var appName = 'streaming-knife';
-
             angular.module(appName, []);
-
             angular.module(appName).service('dispatcher', Common.Dispatcher);
+            angular.module(appName).service('logger', Common.Logger);
+            angular.module(appName).controller('TextArea', Common.TextArea);
 
-            var TextArea = function (dispatcher) {
-                var vm = this;
-                vm.title = 'HELLO!';
+            angular.module(appName).run(bootstrap);
 
-                var writing = function () {
-                    dispatcher.dispatch(new Common.Payload('writing', vm.data));
-                };
-
-                vm.writing = writing;
-            };
-
-            var Logger = function ($log, dispatcher) {
-                var id = dispatcher.register(function (payload) {
-                    $log.info('payload: ' + JSON.stringify(payload));
-                });
-
-                $log.info('id: ' + id);
+            bootstrap.$inject = ['logger'];
+            function bootstrap(logger) {
+                logger.init();
             }
-
-            angular.module(appName).controller('TextArea', TextArea);
-
-            angular.module(appName).controller('Logger', Logger);
         })();
     </script>
-
 
     <div ng-app="streaming-knife">
         <div ng-controller="TextArea as vm">
             <h1>{{vm.title}}</h1>
             <textarea rows="5" cols="25" ng-model="vm.data" ng-change="vm.writing()"></textarea>
         </div>
-
-        <div ng-controller="Logger"></div>
     </div>
 </body>
 </html>

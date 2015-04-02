@@ -62,6 +62,12 @@
     <Content Include="client\app\common\common.js">
       <DependentUpon>common.js.bundle</DependentUpon>
     </Content>
+    <Content Include="client\app\common\common.min.js">
+      <DependentUpon>common.js</DependentUpon>
+    </Content>
+    <Content Include="client\app\common\logger.js" />
+    <Content Include="client\app\common\text-area-controller.js.map" />
+    <Content Include="client\app\common\logger.js.map" />
     <Content Include="client\app\common\common.js.bundle" />
     <Content Include="client\app\common\common.min.js.map">
       <DependentUpon>common.min.js</DependentUpon>
@@ -75,14 +81,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="client\app\app.js" />
-    <Content Include="client\app\common\common.min.js">
-      <DependentUpon>common.js</DependentUpon>
-    </Content>
     <Content Include="client\app\common\dispatcher.js" />
     <Content Include="client\app\common\dispatcher.js.map" />
     <Content Include="client\app\common\index.html" />
     <Content Include="client\app\common\payload.js" />
     <Content Include="client\app\common\payload.js.map" />
+    <Content Include="client\app\common\text-area-controller.js" />
     <Content Include="client\app\main.js" />
     <Content Include="client\app\math-engine.js" />
     <Content Include="client\index.html" />
@@ -100,7 +104,9 @@
   <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="client\app\common\dispatcher.ts" />
+    <TypeScriptCompile Include="client\app\common\logger.ts" />
     <TypeScriptCompile Include="client\app\common\payload.ts" />
+    <TypeScriptCompile Include="client\app\common\text-area-controller.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
