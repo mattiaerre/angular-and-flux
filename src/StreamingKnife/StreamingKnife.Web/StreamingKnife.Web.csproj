@@ -66,6 +66,7 @@
       <DependentUpon>common.js</DependentUpon>
     </Content>
     <Content Include="client\app\common\logger.js" />
+    <Content Include="client\app\common\main.js" />
     <Content Include="client\app\common\text-area-controller.js.map" />
     <Content Include="client\app\common\logger.js.map" />
     <Content Include="client\app\common\common.js.bundle" />

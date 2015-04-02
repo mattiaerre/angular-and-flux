@@ -2,28 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script src="common.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.16/require.min.js" data-main="main.js"></script>
 </head>
 <body>
-    <script type="text/javascript">
-        (function () {
-            // angular
-            var appName = 'streaming-knife';
-            angular.module(appName, []);
-            angular.module(appName).service('dispatcher', Common.Dispatcher);
-            angular.module(appName).service('logger', Common.Logger);
-            angular.module(appName).controller('TextArea', Common.TextArea);
-
-            angular.module(appName).run(bootstrap);
-
-            bootstrap.$inject = ['logger'];
-            function bootstrap(logger) {
-                logger.init();
-            }
-        })();
-    </script>
-
     <div ng-app="streaming-knife">
         <div ng-controller="TextArea as vm">
             <h1>{{vm.title}}</h1>
