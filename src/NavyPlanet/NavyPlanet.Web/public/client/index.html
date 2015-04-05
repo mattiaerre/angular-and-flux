@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.16/require.min.js" data-main="app/main.js"></script>
+</head>
+<body>
+    <div ng-app="navy-planet">
+        <div ng-controller="WeatherController as vm">
+            <h1>{{vm.data.name}}</h1>
+            <div>
+                <p>
+                    <div>{{vm.data.weather[0].main}}</div>
+                    <div>{{vm.data.weather[0].description}}</div>
+                </p>
+            </div>
+            <div>
+                <select ng-model="vm.city" ng-selected="vm.cities[0]" ng-options="city as city for city in vm.cities" ng-change="vm.cityChanged()"></select>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
