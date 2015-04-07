@@ -1,4 +1,4 @@
-﻿function list(req, res) {
+function list(req, res) {
     res.send("respond with a resource");
 }
 exports.list = list;

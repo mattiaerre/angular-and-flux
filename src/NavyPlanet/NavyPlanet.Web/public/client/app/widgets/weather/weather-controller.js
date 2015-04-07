@@ -1,5 +1,6 @@
-﻿var Widgets;
+var Widgets;
 (function (Widgets) {
+    var Weather;
     (function (Weather) {
         var WeatherController = (function () {
             function WeatherController(dispatcher, weatherStore, $log) {
@@ -21,14 +22,12 @@
                         }
                 });
             };
-
             WeatherController.prototype.cityChanged = function () {
                 this.dispatcher.dispatch(new Blocks.Payload(1 /* Command */, new Blocks.PayloadBody(1 /* GetWeather */, this.city)));
             };
             return WeatherController;
         })();
         Weather.WeatherController = WeatherController;
-    })(Widgets.Weather || (Widgets.Weather = {}));
-    var Weather = Widgets.Weather;
+    })(Weather = Widgets.Weather || (Widgets.Weather = {}));
 })(Widgets || (Widgets = {}));
 //# sourceMappingURL=weather-controller.js.map

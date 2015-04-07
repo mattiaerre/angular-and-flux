@@ -1,5 +1,6 @@
-﻿var Widgets;
+var Widgets;
 (function (Widgets) {
+    var Weather;
     (function (Weather) {
         var WeatherStore = (function () {
             function WeatherStore(dispatcher, $http, $log) {
@@ -29,7 +30,6 @@
             return WeatherStore;
         })();
         Weather.WeatherStore = WeatherStore;
-    })(Widgets.Weather || (Widgets.Weather = {}));
-    var Weather = Widgets.Weather;
+    })(Weather = Widgets.Weather || (Widgets.Weather = {}));
 })(Widgets || (Widgets = {}));
 //# sourceMappingURL=weather-store.js.map

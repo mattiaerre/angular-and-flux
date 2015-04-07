@@ -45,7 +45,6 @@
     <TypeScriptCompile Include="routes\user.ts" />
     <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jasmine\jasmine.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\mocha\mocha.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\stylus\stylus.d.ts" />
     <Content Include="package.json" />
@@ -77,7 +76,6 @@
     <Folder Include="Scripts\typings\" />
     <Folder Include="Scripts\typings\express\" />
     <Folder Include="Scripts\typings\jasmine\" />
-    <Folder Include="Scripts\typings\mocha\" />
     <Folder Include="Scripts\typings\node\" />
     <Folder Include="Scripts\typings\stylus\" />
     <Folder Include="views\" />
