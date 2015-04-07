@@ -13,6 +13,7 @@
                 this.dispatcher.register(function (payload) {
                     if (payload.actionType == 1 /* Command */) {
                         if (payload.body.actionKey == 1 /* GetWeather */) {
+                            // todo: get base path from config
                             _this.$http.get('http://api.openweathermap.org/data/2.5/weather?q=' + payload.body.value).then(function (response) {
                                 //this.$log.info('response: ' + JSON.stringify(response));
                                 _this.weather = response;

@@ -14,6 +14,7 @@
             this.dispatcher.register((payload: Blocks.Payload) => {
                 if (payload.actionType == Blocks.ActionType.Command) {
                     if (payload.body.actionKey == Blocks.ActionKey.GetWeather) {
+                        // todo: get base path from config
                         this.$http.get('http://api.openweathermap.org/data/2.5/weather?q=' + payload.body.value).then((response) => {
                             //this.$log.info('response: ' + JSON.stringify(response));
                             this.weather = response;
