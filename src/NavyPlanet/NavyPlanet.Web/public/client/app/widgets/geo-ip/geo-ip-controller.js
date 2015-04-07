@@ -12,13 +12,13 @@ var Widgets;
             GeoIpController.prototype.init = function () {
                 var _this = this;
                 this.dispatcher.register(function (payload) {
-                    if (payload.actionType == Blocks.ActionType.Event) {
-                        if (payload.body.actionKey == Blocks.ActionKey.GeoIpLoaded) {
+                    if (payload.actionType == 2 /* Event */) {
+                        if (payload.body.actionKey == 5 /* GeoIpLoaded */) {
                             _this.model = _this.geoIpStore.geoIp;
                         }
                     }
                 });
-                this.dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Event, new Blocks.PayloadBody(Blocks.ActionKey.GeoIpControllerReady, null)));
+                this.dispatcher.dispatch(new Blocks.Payload(2 /* Event */, new Blocks.PayloadBody(4 /* GeoIpControllerReady */, null)));
             };
             return GeoIpController;
         })();

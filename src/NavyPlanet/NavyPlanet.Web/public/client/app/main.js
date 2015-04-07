@@ -1,12 +1,12 @@
 ﻿// see: http://stackoverflow.com/questions/8315088/prevent-requirejs-from-caching-required-scripts
 require.config({
     paths: {
-        angular: '//code.angularjs.org/1.3.14/angular'
+        angular: '//code.angularjs.org/1.3.14/angular',
     },
     shim: {
         angular: {
-            exports: 'angular'
-        }
+            exports: 'angular',
+        },
     },
 });
 

@@ -15,18 +15,18 @@ var Widgets;
             WeatherController.prototype.init = function () {
                 var _this = this;
                 this.dispatcher.register(function (payload) {
-                    if (payload.actionType == Blocks.ActionType.Event) {
-                        if (payload.body.actionKey == Blocks.ActionKey.WeatherLoaded) {
+                    if (payload.actionType == 2 /* Event */) {
+                        if (payload.body.actionKey == 2 /* WeatherLoaded */) {
                             _this.city = _this.weatherStore.city;
                             _this.cities = _this.weatherStore.cities;
                             _this.model = _this.weatherStore.weather;
                         }
                     }
                 });
-                this.dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Event, new Blocks.PayloadBody(Blocks.ActionKey.WeatherControllerReady, null)));
+                this.dispatcher.dispatch(new Blocks.Payload(2 /* Event */, new Blocks.PayloadBody(1 /* WeatherControllerReady */, null)));
             };
             WeatherController.prototype.cityChanged = function () {
-                this.dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Command, new Blocks.PayloadBody(Blocks.ActionKey.GetWeather, this.city)));
+                this.dispatcher.dispatch(new Blocks.Payload(1 /* Command */, new Blocks.PayloadBody(3 /* GetWeather */, this.city)));
             };
             return WeatherController;
         })();
