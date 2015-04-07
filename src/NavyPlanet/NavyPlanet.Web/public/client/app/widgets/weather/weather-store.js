@@ -34,7 +34,7 @@ var Widgets;
             WeatherStore.prototype.getWeather = function (url) {
                 var _this = this;
                 this.$http.get(url).then(function (response) {
-                    _this.weather = response;
+                    _this.weather = response.data;
                     _this.dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Event, new Blocks.PayloadBody(Blocks.ActionKey.WeatherLoaded, null)));
                 }, function (reason) {
                     _this.$log.error(reason);

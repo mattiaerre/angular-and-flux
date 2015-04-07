@@ -14,7 +14,7 @@
                     if (payload.body.actionKey == Blocks.ActionKey.WeatherLoaded) {
                         this.city = this.weatherStore.city;
                         this.cities = this.weatherStore.cities;
-                        this.model = this.weatherStore.weather.data;
+                        this.model = this.weatherStore.weather;
                     }
                 }
             });

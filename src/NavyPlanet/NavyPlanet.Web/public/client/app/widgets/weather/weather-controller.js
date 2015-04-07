@@ -19,7 +19,7 @@ var Widgets;
                         if (payload.body.actionKey == Blocks.ActionKey.WeatherLoaded) {
                             _this.city = _this.weatherStore.city;
                             _this.cities = _this.weatherStore.cities;
-                            _this.model = _this.weatherStore.weather.data;
+                            _this.model = _this.weatherStore.weather;
                         }
                     }
                 });

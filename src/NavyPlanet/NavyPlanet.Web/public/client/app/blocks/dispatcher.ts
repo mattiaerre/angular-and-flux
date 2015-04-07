@@ -7,9 +7,11 @@ module Blocks {
     }
 
     export enum ActionKey {
-        GetWeather = 1,
+        WeatherControllerReady = 1,
         WeatherLoaded = 2,
-        WeatherControllerReady = 3,
+        GetWeather = 3,
+        GeoIpControllerReady = 4,
+        GeoIpLoaded = 5,
     }
 
     export class PayloadBody {

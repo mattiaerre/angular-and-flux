@@ -7,9 +7,11 @@ var Blocks;
     })(Blocks.ActionType || (Blocks.ActionType = {}));
     var ActionType = Blocks.ActionType;
     (function (ActionKey) {
-        ActionKey[ActionKey["GetWeather"] = 1] = "GetWeather";
+        ActionKey[ActionKey["WeatherControllerReady"] = 1] = "WeatherControllerReady";
         ActionKey[ActionKey["WeatherLoaded"] = 2] = "WeatherLoaded";
-        ActionKey[ActionKey["WeatherControllerReady"] = 3] = "WeatherControllerReady";
+        ActionKey[ActionKey["GetWeather"] = 3] = "GetWeather";
+        ActionKey[ActionKey["GeoIpControllerReady"] = 4] = "GeoIpControllerReady";
+        ActionKey[ActionKey["GeoIpLoaded"] = 5] = "GeoIpLoaded";
     })(Blocks.ActionKey || (Blocks.ActionKey = {}));
     var ActionKey = Blocks.ActionKey;
     var PayloadBody = (function () {

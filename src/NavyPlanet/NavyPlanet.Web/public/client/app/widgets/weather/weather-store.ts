@@ -1,14 +1,13 @@
 ﻿module Widgets.Weather {
     export interface IWeatherStore {
-        init(callback: any): void;
+        init(config: any): void;
         cities: string[];
         city: string;
         weather: any;
     }
 
     export class WeatherStore implements IWeatherStore {
-        constructor(private dispatcher: Blocks.IDispatcher, private $http: any, private $log: any) {
-        }
+        constructor(private dispatcher: Blocks.IDispatcher, private $http: any, private $log: any) { }
 
         cities: string[] = null;
         city: string = null;
@@ -38,7 +37,7 @@
 
         private getWeather(url): void {
             this.$http.get(url).then((response) => {
-                this.weather = response;
+                this.weather = response.data;
                 this.dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Event, new Blocks.PayloadBody(Blocks.ActionKey.WeatherLoaded, null)));
             },(reason) => {
                     this.$log.error(reason);
