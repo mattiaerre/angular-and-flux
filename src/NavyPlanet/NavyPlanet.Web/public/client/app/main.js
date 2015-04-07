@@ -15,8 +15,8 @@ require(['angular', 'app.config', 'blocks/dispatcher', 'widgets/weather/weather-
     var appName = 'navy-planet';
     angular.module(appName, []);
     angular.module(appName).service('dispatcher', Blocks.Dispatcher);
-    angular.module(appName).controller('WeatherController', Widgets.Weather.WeatherController);
     angular.module(appName).service('weatherStore', Widgets.Weather.WeatherStore);
+    angular.module(appName).controller('WeatherController', Widgets.Weather.WeatherController);
     
     angular.module(appName).run(bootstrap);
     
