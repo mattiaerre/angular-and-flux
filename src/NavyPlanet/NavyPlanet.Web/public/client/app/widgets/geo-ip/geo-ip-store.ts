@@ -17,7 +17,6 @@
             this.dispatcher.register((payload: Blocks.Payload) => {
                 if (payload.actionType == Blocks.ActionType.Event) {
                     if (payload.body.actionKey == Blocks.ActionKey.GeoIpControllerReady) {
-                        // todo !!!
                         this.getGeoIp(this.config.geoipEndpoint);
                     }
                 }
