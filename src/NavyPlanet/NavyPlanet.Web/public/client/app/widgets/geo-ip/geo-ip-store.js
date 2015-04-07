@@ -17,7 +17,7 @@ var Widgets;
                     if (payload.actionType == Blocks.ActionType.Event) {
                         if (payload.body.actionKey == Blocks.ActionKey.GeoIpControllerReady) {
                             // todo !!!
-                            _this.getGeoIp('http://www.telize.com/geoip');
+                            _this.getGeoIp(_this.config.geoipEndpoint);
                         }
                     }
                 });

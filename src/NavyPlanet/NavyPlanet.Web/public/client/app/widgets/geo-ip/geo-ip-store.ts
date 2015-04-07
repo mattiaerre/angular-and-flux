@@ -18,7 +18,7 @@
                 if (payload.actionType == Blocks.ActionType.Event) {
                     if (payload.body.actionKey == Blocks.ActionKey.GeoIpControllerReady) {
                         // todo !!!
-                        this.getGeoIp('http://www.telize.com/geoip');
+                        this.getGeoIp(this.config.geoipEndpoint);
                     }
                 }
             });
