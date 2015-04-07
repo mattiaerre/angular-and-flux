@@ -9,15 +9,15 @@
 <body>
     <div ng-app="navy-planet">
         <div ng-controller="WeatherController as vm">
-            <h1>{{vm.data.name}}</h1>
+            <h1>{{vm.model.name}}</h1>
             <div>
                 <p>
-                    <div>{{vm.data.weather[0].main}}</div>
-                    <div>{{vm.data.weather[0].description}}</div>
+                    <div>{{vm.model.weather[0].main}}</div>
+                    <div>{{vm.model.weather[0].description}}</div>
                 </p>
             </div>
             <div>
-                <select ng-model="vm.city" ng-selected="vm.cities[0]" ng-options="city as city for city in vm.cities" ng-change="vm.cityChanged()"></select>
+                <select ng-options="city as city for city in vm.cities" ng-model="vm.city" ng-change="vm.cityChanged()"></select>
             </div>
         </div>
     </div>

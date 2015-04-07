@@ -11,13 +11,12 @@ require.config({
 });
 
 // navy-planet.lib
-
-require(['angular', 'blocks/dispatcher', 'widgets/weather/weather-store', 'widgets/weather/weather-controller'], function (angular) {
+require(['angular', 'app.config', 'blocks/dispatcher', 'widgets/weather/weather-store', 'widgets/weather/weather-controller'], function (angular, config) {
     var appName = 'navy-planet';
     angular.module(appName, []);
     angular.module(appName).service('dispatcher', Blocks.Dispatcher);
-    angular.module(appName).service('weatherStore', Widgets.Weather.WeatherStore);
     angular.module(appName).controller('WeatherController', Widgets.Weather.WeatherController);
+    angular.module(appName).service('weatherStore', Widgets.Weather.WeatherStore);
     
     angular.module(appName).run(bootstrap);
     
@@ -29,8 +28,6 @@ require(['angular', 'blocks/dispatcher', 'widgets/weather/weather-store', 'widge
             $log.info('payload: ' + JSON.stringify(payload));
         });
         
-        weatherStore.init(function () {
-            dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Command, new Blocks.PayloadBody(Blocks.ActionKey.GetWeather, 'London,uk')));
-        });
+        weatherStore.init(config);
     }
 });

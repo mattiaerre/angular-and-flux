@@ -7,23 +7,26 @@ var Widgets;
                 this.dispatcher = dispatcher;
                 this.weatherStore = weatherStore;
                 this.$log = $log;
-                this.data = null;
-                this.cities = ['London,uk', 'New York,us', 'Turin,it'];
-                this.city = this.cities[0];
+                this.model = null;
+                this.cities = null;
+                this.city = null;
                 this.init();
             }
             WeatherController.prototype.init = function () {
                 var _this = this;
                 this.dispatcher.register(function (payload) {
-                    if (payload.actionType == 2 /* Event */)
-                        if (payload.body.actionKey == 2 /* WeatherLoaded */) {
-                            _this.$log.info(_this.weatherStore.weather);
-                            _this.data = _this.weatherStore.weather.data;
+                    if (payload.actionType == Blocks.ActionType.Event) {
+                        if (payload.body.actionKey == Blocks.ActionKey.WeatherLoaded) {
+                            _this.city = _this.weatherStore.city;
+                            _this.cities = _this.weatherStore.cities;
+                            _this.model = _this.weatherStore.weather.data;
                         }
+                    }
                 });
+                this.dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Event, new Blocks.PayloadBody(Blocks.ActionKey.WeatherControllerReady, null)));
             };
             WeatherController.prototype.cityChanged = function () {
-                this.dispatcher.dispatch(new Blocks.Payload(1 /* Command */, new Blocks.PayloadBody(1 /* GetWeather */, this.city)));
+                this.dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Command, new Blocks.PayloadBody(Blocks.ActionKey.GetWeather, this.city)));
             };
             return WeatherController;
         })();

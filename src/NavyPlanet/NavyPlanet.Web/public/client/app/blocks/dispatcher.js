@@ -9,6 +9,7 @@ var Blocks;
     (function (ActionKey) {
         ActionKey[ActionKey["GetWeather"] = 1] = "GetWeather";
         ActionKey[ActionKey["WeatherLoaded"] = 2] = "WeatherLoaded";
+        ActionKey[ActionKey["WeatherControllerReady"] = 3] = "WeatherControllerReady";
     })(Blocks.ActionKey || (Blocks.ActionKey = {}));
     var ActionKey = Blocks.ActionKey;
     var PayloadBody = (function () {

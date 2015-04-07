@@ -8,7 +8,8 @@ module Blocks {
 
     export enum ActionKey {
         GetWeather = 1,
-        WeatherLoaded = 2
+        WeatherLoaded = 2,
+        WeatherControllerReady = 3,
     }
 
     export class PayloadBody {

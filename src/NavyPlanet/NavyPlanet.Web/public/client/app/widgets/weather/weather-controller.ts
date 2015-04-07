@@ -4,18 +4,21 @@
             this.init();
         }
 
-        data: any = null;
-        cities: string[] = ['London,uk', 'New York,us', 'Turin,it']
-        city: string = this.cities[0];
+        model: any = null;
+        cities: string[] = null;
+        city: string = null;
 
         private init(): void {
             this.dispatcher.register((payload: Blocks.Payload) => {
-                if (payload.actionType == Blocks.ActionType.Event)
+                if (payload.actionType == Blocks.ActionType.Event) {
                     if (payload.body.actionKey == Blocks.ActionKey.WeatherLoaded) {
-                        this.$log.info(this.weatherStore.weather);
-                        this.data = this.weatherStore.weather.data;
+                        this.city = this.weatherStore.city;
+                        this.cities = this.weatherStore.cities;
+                        this.model = this.weatherStore.weather.data;
                     }
+                }
             });
+            this.dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Event, new Blocks.PayloadBody(Blocks.ActionKey.WeatherControllerReady, null)));
         }
 
         cityChanged(): void {
