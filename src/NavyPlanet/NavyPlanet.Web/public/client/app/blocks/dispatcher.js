@@ -38,8 +38,7 @@ var Blocks;
             this.isPending = [];
             this.isHandled = [];
             this.pendingPayload = null;
-            // todo: I need to change this !!!
-            this._isDispatching = false;
+            this.dispatching = false;
         }
         Dispatcher.prototype.register = function (callback) {
             var id = this.prefix + this.lastId++;
@@ -47,21 +46,17 @@ var Blocks;
             return id;
         };
         Dispatcher.prototype.unregister = function (id) {
-            // todo: invariant
             delete this.callbacks[id];
         };
         Dispatcher.prototype.waitFor = function (ids) {
             for (var i = 0; i < ids.length; i++) {
                 var id = ids[i];
-                if (this.isPending[id]) {
+                if (this.isPending[id])
                     continue;
-                }
-                // todo: invariant
                 this.invokeCallback(id);
             }
         };
         Dispatcher.prototype.dispatch = function (payload) {
-            // todo: invariant
             this.startDispatching(payload);
             try {
                 for (var id in this.callbacks) {
@@ -76,7 +71,7 @@ var Blocks;
             }
         };
         Dispatcher.prototype.isDispatching = function () {
-            return this._isDispatching;
+            return this.dispatching;
         };
         Dispatcher.prototype.invokeCallback = function (id) {
             this.isPending[id] = true;
@@ -89,11 +84,11 @@ var Blocks;
                 this.isHandled[id] = false;
             }
             this.pendingPayload = payload;
-            this._isDispatching = true;
+            this.dispatching = true;
         };
         Dispatcher.prototype.stopDispatching = function () {
             this.pendingPayload = null;
-            this._isDispatching = false;
+            this.dispatching = false;
         };
         return Dispatcher;
     })();

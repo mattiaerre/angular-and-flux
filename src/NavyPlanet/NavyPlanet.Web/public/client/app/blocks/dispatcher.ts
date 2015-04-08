@@ -39,8 +39,7 @@ module Blocks {
         private isPending: any[] = [];
         private isHandled: any[] = [];
         private pendingPayload: any = null;
-        // todo: I need to change this !!!
-        private _isDispatching: boolean = false;
+        private dispatching: boolean = false;
 
         register(callback: any): string {
             var id: string = this.prefix + this.lastId++;
@@ -49,25 +48,19 @@ module Blocks {
         }
 
         unregister(id: string): void {
-            // todo: invariant
             delete this.callbacks[id];
         }
 
         waitFor(ids: string[]): void {
-            // todo: invariant
             for (var i = 0; i < ids.length; i++) {
                 var id = ids[i];
-                if (this.isPending[id]) {
-                    // todo: invariant
+                if (this.isPending[id])
                     continue;
-                }
-                // todo: invariant
                 this.invokeCallback(id);
             }
         }
 
         dispatch(payload: any): void {
-            // todo: invariant
             this.startDispatching(payload);
             try {
                 for (var id in this.callbacks) {
@@ -82,7 +75,7 @@ module Blocks {
         }
 
         isDispatching(): boolean {
-            return this._isDispatching;
+            return this.dispatching;
         }
 
         private invokeCallback(id: string) {
@@ -91,18 +84,18 @@ module Blocks {
             this.isHandled[id] = true;
         }
 
-        private startDispatching(payload: Payload) {
+        private startDispatching(payload: any) {
             for (var id in this.callbacks) {
                 this.isPending[id] = false;
                 this.isHandled[id] = false;
             }
             this.pendingPayload = payload;
-            this._isDispatching = true;
+            this.dispatching = true;
         }
 
         private stopDispatching() {
             this.pendingPayload = null;
-            this._isDispatching = false;
+            this.dispatching = false;
         }
     }
 }
