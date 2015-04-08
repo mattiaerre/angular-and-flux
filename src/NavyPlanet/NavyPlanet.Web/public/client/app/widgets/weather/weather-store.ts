@@ -7,7 +7,7 @@
     }
 
     export class WeatherStore implements IWeatherStore {
-        constructor(private dispatcher: Blocks.IDispatcher, private $http: any, private $log: any) { }
+        constructor(private dispatcher: Blocks.IDispatcher, private httpService: Blocks.IHttpService) { }
 
         cities: string[] = null;
         city: string = null;
@@ -41,16 +41,14 @@
                     this.city = payload.body.value;
                     this.getWeather(this.config.openweathermapEndpoint + this.city);
                 }
-            }            
+            }
         }
 
         private getWeather(url): void {
-            this.$http.get(url).then((response) => {
+            this.httpService.getByUrl(url,(response) => {
                 this.weather = response.data;
                 this.dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Event, new Blocks.PayloadBody(Blocks.ActionKey.WeatherLoaded, null)));
-            },(reason) => {
-                    this.$log.error(reason);
-                });
+            });
         }
     }
 }

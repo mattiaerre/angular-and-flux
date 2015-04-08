@@ -35,6 +35,7 @@
   <ItemGroup>
     <Content Include="views\layout.vash" />
     <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="public\client\app\blocks\http-service.ts" />
     <TypeScriptCompile Include="public\client\app\widgets\geo-ip\geo-ip-controller.ts" />
     <TypeScriptCompile Include="public\client\app\widgets\geo-ip\geo-ip-store.ts" />
     <TypeScriptCompile Include="public\client\app\widgets\weather\weather-controller.ts" />
@@ -44,6 +45,7 @@
       <TestFramework>Mocha</TestFramework>
     </TypeScriptCompile>
     <TypeScriptCompile Include="public\client\app\blocks\dispatcher.ts" />
+    <TypeScriptCompile Include="public\test\app\widgets\geo-ip\geo-ip-store.spec.ts" />
     <TypeScriptCompile Include="routes\index.ts" />
     <TypeScriptCompile Include="routes\user.ts" />
     <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
@@ -75,6 +77,8 @@
     <Folder Include="public\stylesheets\" />
     <Folder Include="public\test\app\" />
     <Folder Include="public\test\app\blocks\" />
+    <Folder Include="public\test\app\widgets\" />
+    <Folder Include="public\test\app\widgets\geo-ip\" />
     <Folder Include="routes\" />
     <Folder Include="Scripts\" />
     <Folder Include="Scripts\typings\" />

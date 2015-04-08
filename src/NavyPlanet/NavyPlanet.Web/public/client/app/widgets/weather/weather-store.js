@@ -3,10 +3,9 @@ var Widgets;
     var Weather;
     (function (Weather) {
         var WeatherStore = (function () {
-            function WeatherStore(dispatcher, $http, $log) {
+            function WeatherStore(dispatcher, httpService) {
                 this.dispatcher = dispatcher;
-                this.$http = $http;
-                this.$log = $log;
+                this.httpService = httpService;
                 this.cities = null;
                 this.city = null;
                 this.weather = null;
@@ -40,11 +39,9 @@ var Widgets;
             };
             WeatherStore.prototype.getWeather = function (url) {
                 var _this = this;
-                this.$http.get(url).then(function (response) {
+                this.httpService.getByUrl(url, function (response) {
                     _this.weather = response.data;
                     _this.dispatcher.dispatch(new Blocks.Payload(2 /* Event */, new Blocks.PayloadBody(2 /* WeatherLoaded */, null)));
-                }, function (reason) {
-                    _this.$log.error(reason);
                 });
             };
             return WeatherStore;

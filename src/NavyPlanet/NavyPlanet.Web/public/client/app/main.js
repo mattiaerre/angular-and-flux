@@ -11,10 +11,11 @@ require.config({
 });
 
 // navy-planet.lib
-require(['angular', 'app.config', 'blocks/dispatcher', 'widgets/weather/weather-store', 'widgets/weather/weather-controller', 'widgets/geo-ip/geo-ip-store', 'widgets/geo-ip/geo-ip-controller'], function (angular, config) {
+require(['angular', 'app.config', 'blocks/dispatcher', 'blocks/http-service', 'widgets/weather/weather-store', 'widgets/weather/weather-controller', 'widgets/geo-ip/geo-ip-store', 'widgets/geo-ip/geo-ip-controller'], function (angular, config) {
     var appName = 'navy-planet';
     angular.module(appName, []);
     angular.module(appName).service('dispatcher', Blocks.Dispatcher);
+    angular.module(appName).service('httpService', Blocks.HttpService);
     angular.module(appName).service('weatherStore', Widgets.Weather.WeatherStore);
     angular.module(appName).controller('WeatherController', Widgets.Weather.WeatherController);
     angular.module(appName).service('geoIpStore', Widgets.GeoIp.GeoIpStore);

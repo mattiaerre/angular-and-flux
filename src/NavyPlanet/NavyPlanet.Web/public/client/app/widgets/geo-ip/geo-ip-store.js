@@ -3,10 +3,9 @@ var Widgets;
     var GeoIp;
     (function (GeoIp) {
         var GeoIpStore = (function () {
-            function GeoIpStore(dispatcher, $http, $log) {
+            function GeoIpStore(dispatcher, httpService) {
                 this.dispatcher = dispatcher;
-                this.$http = $http;
-                this.$log = $log;
+                this.httpService = httpService;
                 this.geoIp = null;
                 this.config = null;
             }
@@ -24,11 +23,9 @@ var Widgets;
             };
             GeoIpStore.prototype.getGeoIp = function (url) {
                 var _this = this;
-                this.$http.get(url).then(function (response) {
+                this.httpService.getByUrl(url, function (response) {
                     _this.geoIp = response.data;
                     _this.dispatcher.dispatch(new Blocks.Payload(2 /* Event */, new Blocks.PayloadBody(5 /* GeoIpLoaded */, null)));
-                }, function (reason) {
-                    _this.$log.error(reason);
                 });
             };
             return GeoIpStore;
