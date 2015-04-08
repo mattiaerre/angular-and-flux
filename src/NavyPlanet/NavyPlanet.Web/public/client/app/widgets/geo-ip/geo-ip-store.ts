@@ -13,12 +13,12 @@
 
         init(config: any): void {
             this.config = config;
-            this.dispatcher.register((payload: Blocks.Payload) => this.register(payload));
+            this.dispatcher.register((payload: Domain.Payload) => this.register(payload));
         }
 
-        private register(payload: Blocks.Payload): void {
-            if (payload.actionType == Blocks.ActionType.Event) {
-                if (payload.body.actionKey == Blocks.ActionKey.GeoIpControllerReady) {
+        private register(payload: Domain.Payload): void {
+            if (payload.actionType == Domain.ActionType.Event) {
+                if (payload.body.actionKey == Domain.ActionKey.GeoIpControllerReady) {
                     this.getGeoIp(this.config.geoipEndpoint);
                 }
             }
@@ -27,7 +27,7 @@
         private getGeoIp(url): void {
             this.httpService.getByUrl(url,(response) => {
                 this.geoIp = response.data;
-                this.dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Event, new Blocks.PayloadBody(Blocks.ActionKey.GeoIpLoaded, null)));
+                this.dispatcher.dispatch(new Domain.Payload(Domain.ActionType.Event, new Domain.PayloadBody(Domain.ActionKey.GeoIpLoaded, null)));
             });
         }
     }

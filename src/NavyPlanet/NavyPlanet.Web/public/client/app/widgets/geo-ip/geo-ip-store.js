@@ -25,7 +25,7 @@ var Widgets;
                 var _this = this;
                 this.httpService.getByUrl(url, function (response) {
                     _this.geoIp = response.data;
-                    _this.dispatcher.dispatch(new Blocks.Payload(2 /* Event */, new Blocks.PayloadBody(5 /* GeoIpLoaded */, null)));
+                    _this.dispatcher.dispatch(new Domain.Payload(2 /* Event */, new Domain.PayloadBody(5 /* GeoIpLoaded */, null)));
                 });
             };
             return GeoIpStore;

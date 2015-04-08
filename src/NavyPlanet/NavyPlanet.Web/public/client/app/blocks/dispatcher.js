@@ -1,35 +1,6 @@
 // see: https://github.com/facebook/flux/blob/master/src/Dispatcher.js
 var Blocks;
 (function (Blocks) {
-    (function (ActionType) {
-        ActionType[ActionType["Command"] = 1] = "Command";
-        ActionType[ActionType["Event"] = 2] = "Event";
-    })(Blocks.ActionType || (Blocks.ActionType = {}));
-    var ActionType = Blocks.ActionType;
-    (function (ActionKey) {
-        ActionKey[ActionKey["WeatherControllerReady"] = 1] = "WeatherControllerReady";
-        ActionKey[ActionKey["WeatherLoaded"] = 2] = "WeatherLoaded";
-        ActionKey[ActionKey["GetWeather"] = 3] = "GetWeather";
-        ActionKey[ActionKey["GeoIpControllerReady"] = 4] = "GeoIpControllerReady";
-        ActionKey[ActionKey["GeoIpLoaded"] = 5] = "GeoIpLoaded";
-    })(Blocks.ActionKey || (Blocks.ActionKey = {}));
-    var ActionKey = Blocks.ActionKey;
-    var Payload = (function () {
-        function Payload(actionType, body) {
-            this.actionType = actionType;
-            this.body = body;
-        }
-        return Payload;
-    })();
-    Blocks.Payload = Payload;
-    var PayloadBody = (function () {
-        function PayloadBody(actionKey, value) {
-            this.actionKey = actionKey;
-            this.value = value;
-        }
-        return PayloadBody;
-    })();
-    Blocks.PayloadBody = PayloadBody;
     var Dispatcher = (function () {
         function Dispatcher() {
             this.lastId = 1;

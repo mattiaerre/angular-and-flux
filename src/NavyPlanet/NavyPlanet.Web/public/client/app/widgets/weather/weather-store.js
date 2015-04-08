@@ -41,7 +41,7 @@ var Widgets;
                 var _this = this;
                 this.httpService.getByUrl(url, function (response) {
                     _this.weather = response.data;
-                    _this.dispatcher.dispatch(new Blocks.Payload(2 /* Event */, new Blocks.PayloadBody(2 /* WeatherLoaded */, null)));
+                    _this.dispatcher.dispatch(new Domain.Payload(2 /* Event */, new Domain.PayloadBody(2 /* WeatherLoaded */, null)));
                 });
             };
             return WeatherStore;

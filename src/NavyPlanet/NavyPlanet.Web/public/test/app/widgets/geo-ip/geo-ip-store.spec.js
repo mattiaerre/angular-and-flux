@@ -1,5 +1,6 @@
 /// <reference path="../../../../../Scripts/typings/jasmine/jasmine.d.ts" />
 /// <reference path="../../../../client/app/blocks/dispatcher.ts" />
+/// <reference path="../../../../client/app/domain/domain.ts" />
 /// <reference path="../../../../client/app/widgets/geo-ip/geo-ip-store.ts" />
 describe('given a geo ip store', function () {
     var dispatcher;
@@ -27,7 +28,7 @@ describe('given a geo ip store', function () {
                 }
             });
             store.init(config);
-            dispatcher.dispatch(new Blocks.Payload(2 /* Event */, new Blocks.PayloadBody(4 /* GeoIpControllerReady */, null)));
+            dispatcher.dispatch(new Domain.Payload(2 /* Event */, new Domain.PayloadBody(4 /* GeoIpControllerReady */, null)));
             expect(count).toBe(2); // info: in order to make sure that 'GeoIpLoaded' has been dispatched
         });
     });

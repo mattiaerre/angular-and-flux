@@ -12,7 +12,7 @@ var Widgets;
             GeoIpController.prototype.init = function () {
                 var _this = this;
                 this.dispatcher.register(function (payload) { return _this.register(payload); });
-                this.dispatcher.dispatch(new Blocks.Payload(2 /* Event */, new Blocks.PayloadBody(4 /* GeoIpControllerReady */, null)));
+                this.dispatcher.dispatch(new Domain.Payload(2 /* Event */, new Domain.PayloadBody(4 /* GeoIpControllerReady */, null)));
             };
             GeoIpController.prototype.register = function (payload) {
                 if (payload.actionType == 2 /* Event */) {

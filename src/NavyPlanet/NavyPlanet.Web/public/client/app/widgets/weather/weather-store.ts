@@ -19,25 +19,25 @@
             this.config = config;
             this.cities = this.config.cities;
             this.city = this.config.city;
-            this.dispatcher.register((payload: Blocks.Payload) => this.register(payload));
+            this.dispatcher.register((payload: Domain.Payload) => this.register(payload));
         }
 
-        private register(payload: Blocks.Payload): void {
+        private register(payload: Domain.Payload): void {
             this.registerEvents(payload);
             this.registerCommands(payload);
         }
 
-        private registerEvents(payload: Blocks.Payload): void {
-            if (payload.actionType == Blocks.ActionType.Event) {
-                if (payload.body.actionKey == Blocks.ActionKey.WeatherControllerReady) {
+        private registerEvents(payload: Domain.Payload): void {
+            if (payload.actionType == Domain.ActionType.Event) {
+                if (payload.body.actionKey == Domain.ActionKey.WeatherControllerReady) {
                     this.getWeather(this.config.openweathermapEndpoint + this.city);
                 }
             }
         }
 
-        private registerCommands(payload: Blocks.Payload): void {
-            if (payload.actionType == Blocks.ActionType.Command) {
-                if (payload.body.actionKey == Blocks.ActionKey.GetWeather) {
+        private registerCommands(payload: Domain.Payload): void {
+            if (payload.actionType == Domain.ActionType.Command) {
+                if (payload.body.actionKey == Domain.ActionKey.GetWeather) {
                     this.city = payload.body.value;
                     this.getWeather(this.config.openweathermapEndpoint + this.city);
                 }
@@ -47,7 +47,7 @@
         private getWeather(url): void {
             this.httpService.getByUrl(url,(response) => {
                 this.weather = response.data;
-                this.dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Event, new Blocks.PayloadBody(Blocks.ActionKey.WeatherLoaded, null)));
+                this.dispatcher.dispatch(new Domain.Payload(Domain.ActionType.Event, new Domain.PayloadBody(Domain.ActionKey.WeatherLoaded, null)));
             });
         }
     }

@@ -9,13 +9,13 @@
         city: string = null;
 
         private init(): void {
-            this.dispatcher.register((payload: Blocks.Payload) => this.register(payload));
-            this.dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Event, new Blocks.PayloadBody(Blocks.ActionKey.WeatherControllerReady, null)));
+            this.dispatcher.register((payload: Domain.Payload) => this.register(payload));
+            this.dispatcher.dispatch(new Domain.Payload(Domain.ActionType.Event, new Domain.PayloadBody(Domain.ActionKey.WeatherControllerReady, null)));
         }
 
-        private register(payload: Blocks.Payload): void {
-            if (payload.actionType == Blocks.ActionType.Event) {
-                if (payload.body.actionKey == Blocks.ActionKey.WeatherLoaded) {
+        private register(payload: Domain.Payload): void {
+            if (payload.actionType == Domain.ActionType.Event) {
+                if (payload.body.actionKey == Domain.ActionKey.WeatherLoaded) {
                     this.city = this.weatherStore.city;
                     this.cities = this.weatherStore.cities;
                     this.model = this.weatherStore.weather;
@@ -24,7 +24,7 @@
         }
 
         cityChanged(): void {
-            this.dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Command, new Blocks.PayloadBody(Blocks.ActionKey.GetWeather, this.city)));
+            this.dispatcher.dispatch(new Domain.Payload(Domain.ActionType.Command, new Domain.PayloadBody(Domain.ActionKey.GetWeather, this.city)));
         }
     }
 }

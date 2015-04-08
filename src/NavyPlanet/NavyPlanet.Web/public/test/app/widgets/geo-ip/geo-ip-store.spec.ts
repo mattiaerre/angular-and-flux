@@ -1,5 +1,6 @@
 ﻿/// <reference path="../../../../../Scripts/typings/jasmine/jasmine.d.ts" />
 /// <reference path="../../../../client/app/blocks/dispatcher.ts" />
+/// <reference path="../../../../client/app/domain/domain.ts" />
 /// <reference path="../../../../client/app/widgets/geo-ip/geo-ip-store.ts" />
 
 describe('given a geo ip store',() => {
@@ -17,19 +18,19 @@ describe('given a geo ip store',() => {
     describe('when calling init',() => {
         it('then it should be able to emit the GeoIpLoaded event upon receiving a GeoIpControllerReady event',() => {
             var count = 0;
-            dispatcher.register((payload: Blocks.Payload) => {
+            dispatcher.register((payload: Domain.Payload) => {
                 count++;
-                expect(payload.actionType).toBe(Blocks.ActionType.Event);
+                expect(payload.actionType).toBe(Domain.ActionType.Event);
                 if (count == 1) {
-                    expect(payload.body.actionKey).toBe(Blocks.ActionKey.GeoIpControllerReady);
+                    expect(payload.body.actionKey).toBe(Domain.ActionKey.GeoIpControllerReady);
                 } else if (count == 2) {
-                    expect(payload.body.actionKey).toBe(Blocks.ActionKey.GeoIpLoaded);
+                    expect(payload.body.actionKey).toBe(Domain.ActionKey.GeoIpLoaded);
                 }
             });
 
             store.init(config);
 
-            dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Event, new Blocks.PayloadBody(Blocks.ActionKey.GeoIpControllerReady, null)));
+            dispatcher.dispatch(new Domain.Payload(Domain.ActionType.Event, new Domain.PayloadBody(Domain.ActionKey.GeoIpControllerReady, null)));
 
             expect(count).toBe(2); // info: in order to make sure that 'GeoIpLoaded' has been dispatched
         });

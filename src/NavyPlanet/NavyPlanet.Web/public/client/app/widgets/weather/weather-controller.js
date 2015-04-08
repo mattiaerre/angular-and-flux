@@ -15,7 +15,7 @@ var Widgets;
             WeatherController.prototype.init = function () {
                 var _this = this;
                 this.dispatcher.register(function (payload) { return _this.register(payload); });
-                this.dispatcher.dispatch(new Blocks.Payload(2 /* Event */, new Blocks.PayloadBody(1 /* WeatherControllerReady */, null)));
+                this.dispatcher.dispatch(new Domain.Payload(2 /* Event */, new Domain.PayloadBody(1 /* WeatherControllerReady */, null)));
             };
             WeatherController.prototype.register = function (payload) {
                 if (payload.actionType == 2 /* Event */) {
@@ -27,7 +27,7 @@ var Widgets;
                 }
             };
             WeatherController.prototype.cityChanged = function () {
-                this.dispatcher.dispatch(new Blocks.Payload(1 /* Command */, new Blocks.PayloadBody(3 /* GetWeather */, this.city)));
+                this.dispatcher.dispatch(new Domain.Payload(1 /* Command */, new Domain.PayloadBody(3 /* GetWeather */, this.city)));
             };
             return WeatherController;
         })();

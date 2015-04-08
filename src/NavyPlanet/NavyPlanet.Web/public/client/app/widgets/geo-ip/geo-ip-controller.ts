@@ -7,13 +7,13 @@
         model: any = null;
 
         private init(): void {
-            this.dispatcher.register((payload: Blocks.Payload) => this.register(payload));
-            this.dispatcher.dispatch(new Blocks.Payload(Blocks.ActionType.Event, new Blocks.PayloadBody(Blocks.ActionKey.GeoIpControllerReady, null)));
+            this.dispatcher.register((payload: Domain.Payload) => this.register(payload));
+            this.dispatcher.dispatch(new Domain.Payload(Domain.ActionType.Event, new Domain.PayloadBody(Domain.ActionKey.GeoIpControllerReady, null)));
         }
 
-        private register(payload: Blocks.Payload): void {
-            if (payload.actionType == Blocks.ActionType.Event) {
-                if (payload.body.actionKey == Blocks.ActionKey.GeoIpLoaded) {
+        private register(payload: Domain.Payload): void {
+            if (payload.actionType == Domain.ActionType.Event) {
+                if (payload.body.actionKey == Domain.ActionKey.GeoIpLoaded) {
                     this.model = this.geoIpStore.geoIp;
                 }
             }
