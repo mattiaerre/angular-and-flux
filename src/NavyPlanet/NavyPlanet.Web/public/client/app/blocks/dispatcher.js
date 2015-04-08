@@ -14,14 +14,6 @@ var Blocks;
         ActionKey[ActionKey["GeoIpLoaded"] = 5] = "GeoIpLoaded";
     })(Blocks.ActionKey || (Blocks.ActionKey = {}));
     var ActionKey = Blocks.ActionKey;
-    var PayloadBody = (function () {
-        function PayloadBody(actionKey, value) {
-            this.actionKey = actionKey;
-            this.value = value;
-        }
-        return PayloadBody;
-    })();
-    Blocks.PayloadBody = PayloadBody;
     var Payload = (function () {
         function Payload(actionType, body) {
             this.actionType = actionType;
@@ -30,6 +22,14 @@ var Blocks;
         return Payload;
     })();
     Blocks.Payload = Payload;
+    var PayloadBody = (function () {
+        function PayloadBody(actionKey, value) {
+            this.actionKey = actionKey;
+            this.value = value;
+        }
+        return PayloadBody;
+    })();
+    Blocks.PayloadBody = PayloadBody;
     var Dispatcher = (function () {
         function Dispatcher() {
             this.lastId = 1;

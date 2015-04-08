@@ -14,13 +14,13 @@ module Blocks {
         GeoIpLoaded = 5,
     }
 
-    export class PayloadBody {
-        constructor(public actionKey: ActionKey, public value: any) {
+    export class Payload {
+        constructor(public actionType: ActionType, public body: PayloadBody) {
         }
     }
 
-    export class Payload {
-        constructor(public actionType: ActionType, public body: PayloadBody) {
+    export class PayloadBody {
+        constructor(public actionKey: ActionKey, public value: any) {
         }
     }
 
@@ -28,7 +28,7 @@ module Blocks {
         register(callback: any): string;
         unregister(id: string): void;
         waitFor(ids: string[]): void;
-        dispatch(payload: Payload): void;
+        dispatch(payload: any): void;
         isDispatching(): boolean;
     }
 
@@ -66,7 +66,7 @@ module Blocks {
             }
         }
 
-        dispatch(payload: Payload): void {
+        dispatch(payload: any): void {
             // todo: invariant
             this.startDispatching(payload);
             try {
