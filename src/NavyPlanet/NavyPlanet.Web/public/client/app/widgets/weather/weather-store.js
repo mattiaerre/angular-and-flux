@@ -17,19 +17,26 @@ var Widgets;
                 this.config = config;
                 this.cities = this.config.cities;
                 this.city = this.config.city;
-                this.dispatcher.register(function (payload) {
-                    if (payload.actionType == 2 /* Event */) {
-                        if (payload.body.actionKey == 1 /* WeatherControllerReady */) {
-                            _this.getWeather(_this.config.openweathermapEndpoint + _this.city);
-                        }
+                this.dispatcher.register(function (payload) { return _this.register(payload); });
+            };
+            WeatherStore.prototype.register = function (payload) {
+                this.registerEvents(payload);
+                this.registerCommands(payload);
+            };
+            WeatherStore.prototype.registerEvents = function (payload) {
+                if (payload.actionType == 2 /* Event */) {
+                    if (payload.body.actionKey == 1 /* WeatherControllerReady */) {
+                        this.getWeather(this.config.openweathermapEndpoint + this.city);
                     }
-                    if (payload.actionType == 1 /* Command */) {
-                        if (payload.body.actionKey == 3 /* GetWeather */) {
-                            _this.city = payload.body.value;
-                            _this.getWeather(_this.config.openweathermapEndpoint + _this.city);
-                        }
+                }
+            };
+            WeatherStore.prototype.registerCommands = function (payload) {
+                if (payload.actionType == 1 /* Command */) {
+                    if (payload.body.actionKey == 3 /* GetWeather */) {
+                        this.city = payload.body.value;
+                        this.getWeather(this.config.openweathermapEndpoint + this.city);
                     }
-                });
+                }
             };
             WeatherStore.prototype.getWeather = function (url) {
                 var _this = this;

@@ -19,20 +19,29 @@
             this.config = config;
             this.cities = this.config.cities;
             this.city = this.config.city;
+            this.dispatcher.register((payload: Blocks.Payload) => this.register(payload));
+        }
 
-            this.dispatcher.register((payload: Blocks.Payload) => {
-                if (payload.actionType == Blocks.ActionType.Event) {
-                    if (payload.body.actionKey == Blocks.ActionKey.WeatherControllerReady) {
-                        this.getWeather(this.config.openweathermapEndpoint + this.city);
-                    }
+        private register(payload: Blocks.Payload): void {
+            this.registerEvents(payload);
+            this.registerCommands(payload);
+        }
+
+        private registerEvents(payload: Blocks.Payload): void {
+            if (payload.actionType == Blocks.ActionType.Event) {
+                if (payload.body.actionKey == Blocks.ActionKey.WeatherControllerReady) {
+                    this.getWeather(this.config.openweathermapEndpoint + this.city);
                 }
-                if (payload.actionType == Blocks.ActionType.Command) {
-                    if (payload.body.actionKey == Blocks.ActionKey.GetWeather) {
-                        this.city = payload.body.value;
-                        this.getWeather(this.config.openweathermapEndpoint + this.city);
-                    }
+            }
+        }
+
+        private registerCommands(payload: Blocks.Payload): void {
+            if (payload.actionType == Blocks.ActionType.Command) {
+                if (payload.body.actionKey == Blocks.ActionKey.GetWeather) {
+                    this.city = payload.body.value;
+                    this.getWeather(this.config.openweathermapEndpoint + this.city);
                 }
-            });
+            }            
         }
 
         private getWeather(url): void {

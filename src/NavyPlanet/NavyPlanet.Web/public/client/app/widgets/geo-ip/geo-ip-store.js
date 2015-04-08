@@ -13,13 +13,14 @@ var Widgets;
             GeoIpStore.prototype.init = function (config) {
                 var _this = this;
                 this.config = config;
-                this.dispatcher.register(function (payload) {
-                    if (payload.actionType == 2 /* Event */) {
-                        if (payload.body.actionKey == 4 /* GeoIpControllerReady */) {
-                            _this.getGeoIp(_this.config.geoipEndpoint);
-                        }
+                this.dispatcher.register(function (payload) { return _this.register(payload); });
+            };
+            GeoIpStore.prototype.register = function (payload) {
+                if (payload.actionType == 2 /* Event */) {
+                    if (payload.body.actionKey == 4 /* GeoIpControllerReady */) {
+                        this.getGeoIp(this.config.geoipEndpoint);
                     }
-                });
+                }
             };
             GeoIpStore.prototype.getGeoIp = function (url) {
                 var _this = this;

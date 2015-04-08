@@ -13,14 +13,15 @@
 
         init(config: any): void {
             this.config = config;
+            this.dispatcher.register((payload: Blocks.Payload) => this.register(payload));
+        }
 
-            this.dispatcher.register((payload: Blocks.Payload) => {
-                if (payload.actionType == Blocks.ActionType.Event) {
-                    if (payload.body.actionKey == Blocks.ActionKey.GeoIpControllerReady) {
-                        this.getGeoIp(this.config.geoipEndpoint);
-                    }
+        private register(payload: Blocks.Payload): void {
+            if (payload.actionType == Blocks.ActionType.Event) {
+                if (payload.body.actionKey == Blocks.ActionKey.GeoIpControllerReady) {
+                    this.getGeoIp(this.config.geoipEndpoint);
                 }
-            });
+            }
         }
 
         private getGeoIp(url): void {

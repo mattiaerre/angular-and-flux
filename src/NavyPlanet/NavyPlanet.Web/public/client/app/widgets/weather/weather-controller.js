@@ -14,16 +14,17 @@ var Widgets;
             }
             WeatherController.prototype.init = function () {
                 var _this = this;
-                this.dispatcher.register(function (payload) {
-                    if (payload.actionType == 2 /* Event */) {
-                        if (payload.body.actionKey == 2 /* WeatherLoaded */) {
-                            _this.city = _this.weatherStore.city;
-                            _this.cities = _this.weatherStore.cities;
-                            _this.model = _this.weatherStore.weather;
-                        }
-                    }
-                });
+                this.dispatcher.register(function (payload) { return _this.register(payload); });
                 this.dispatcher.dispatch(new Blocks.Payload(2 /* Event */, new Blocks.PayloadBody(1 /* WeatherControllerReady */, null)));
+            };
+            WeatherController.prototype.register = function (payload) {
+                if (payload.actionType == 2 /* Event */) {
+                    if (payload.body.actionKey == 2 /* WeatherLoaded */) {
+                        this.city = this.weatherStore.city;
+                        this.cities = this.weatherStore.cities;
+                        this.model = this.weatherStore.weather;
+                    }
+                }
             };
             WeatherController.prototype.cityChanged = function () {
                 this.dispatcher.dispatch(new Blocks.Payload(1 /* Command */, new Blocks.PayloadBody(3 /* GetWeather */, this.city)));
