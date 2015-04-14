@@ -37,6 +37,14 @@
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="public\client\app\blocks\http-service.ts" />
     <TypeScriptCompile Include="public\client\app\domain\domain.ts" />
+    <TypeScriptCompile Include="public\client\app\widgets\emojis\emojis-controller.ts">
+      <SubType>Code</SubType>
+      <TestFramework>ExportRunner</TestFramework>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\client\app\widgets\emojis\emojis-store.ts">
+      <SubType>Code</SubType>
+      <TestFramework>ExportRunner</TestFramework>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="public\client\app\widgets\geo-ip\geo-ip-controller.ts" />
     <TypeScriptCompile Include="public\client\app\widgets\geo-ip\geo-ip-store.ts" />
     <TypeScriptCompile Include="public\client\app\widgets\weather\weather-controller.ts" />
@@ -52,6 +60,7 @@
     <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jasmine\jasmine.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\rx\rx-lite.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\stylus\stylus.d.ts" />
     <Content Include="package.json" />
     <Content Include="public\index.html" />
@@ -69,6 +78,7 @@
     <Folder Include="public\client\app\domain\" />
     <Folder Include="public\client\app\widgets\" />
     <Folder Include="public\client\app\widgets\geo-ip\" />
+    <Folder Include="public\client\app\widgets\emojis\" />
     <Folder Include="public\client\app\widgets\weather\" />
     <Folder Include="public\client\content\" />
     <Folder Include="public\test\" />
@@ -87,6 +97,7 @@
     <Folder Include="Scripts\typings\express\" />
     <Folder Include="Scripts\typings\jasmine\" />
     <Folder Include="Scripts\typings\node\" />
+    <Folder Include="Scripts\typings\rx\" />
     <Folder Include="Scripts\typings\stylus\" />
     <Folder Include="views\" />
   </ItemGroup>
