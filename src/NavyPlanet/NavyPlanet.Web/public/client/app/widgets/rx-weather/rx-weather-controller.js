@@ -8,7 +8,7 @@ var Widgets;
                 this.$log = $log;
                 this.cities = [];
                 this.city = null;
-                this.model = null;
+                this.weather = null;
                 this.init();
             }
             RxWeatherController.prototype.init = function () {
@@ -16,16 +16,12 @@ var Widgets;
                 this.rxWeatherStore.cities.subscribe(function (stream) {
                     _this.cities = stream;
                 });
-                this.rxWeatherStore.city.subscribe(function (stream) {
-                    _this.city = stream;
-                });
-                this.rxWeatherStore.weather.subscribe(function (stream) {
-                    _this.model = stream.data;
+                this.rxWeatherStore.weather.subscribe(function (observable) {
+                    // WTF!!!
                 });
             };
             RxWeatherController.prototype.cityChanged = function () {
-                // todo: this should update this.rxWeatherStore.city
-                console.log(this.city);
+                this.rxWeatherStore.city.onNext(this.city);
             };
             return RxWeatherController;
         })();

@@ -11,12 +11,17 @@ var Widgets;
             RxWeatherStore.prototype.init = function () {
                 var _this = this;
                 this.cities = Rx.Observable.return(this.config.cities);
-                this.city = Rx.Observable.return(this.config.city);
-                var requestStream = Rx.Observable.return(this.config.openweathermapEndpoint + this.config.city); // todo: this should be based on this.city
-                var responseStream = requestStream.flatMap(function (requestUrl) {
-                    return Rx.Observable.fromPromise(_this.$http.get(requestUrl));
+                this.city = new Rx.Subject();
+                this.city.subscribe(function (city) {
+                    // do ajax call and update this.weather
+                    var request = Rx.Observable.return(_this.config.openweathermapEndpoint + city);
+                    var response = request.flatMap(function (requestUrl) {
+                        return Rx.Observable.fromPromise(_this.$http.get(requestUrl));
+                    });
+                    _this.weather.onNext(response);
                 });
-                this.weather = responseStream;
+                this.weather = new Rx.Subject();
+                this.city.onNext(this.config.city);
             };
             return RxWeatherStore;
         })();

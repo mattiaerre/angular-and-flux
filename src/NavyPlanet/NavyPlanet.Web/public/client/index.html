@@ -22,11 +22,11 @@
         </div>
         <hr />
         <div ng-controller="RxWeatherController as vm">
-            <h2>{{vm.model.name}}</h2>
+            <h2>{{vm.weather.name}}</h2>
             <div>
                 <p>
-                    <div>{{vm.model.weather[0].main}}</div>
-                    <div>{{vm.model.weather[0].description}}</div>
+                    <div>{{vm.weather.weather[0].main}}</div>
+                    <div>{{vm.weather.weather[0].description}}</div>
                 </p>
             </div>
             <div>

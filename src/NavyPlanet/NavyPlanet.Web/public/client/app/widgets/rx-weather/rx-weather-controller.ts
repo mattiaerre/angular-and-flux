@@ -6,23 +6,19 @@
 
         cities: string[] = [];
         city: string = null;
-        model: any = null;
+        weather: any = null;
 
         private init(): void {
             this.rxWeatherStore.cities.subscribe(stream => {
                 this.cities = stream;
             });
-            this.rxWeatherStore.city.subscribe(stream => {
-                this.city = stream;
-            });
-            this.rxWeatherStore.weather.subscribe(stream => {
-                this.model = stream.data;
+            this.rxWeatherStore.weather.subscribe(observable => {
+                // WTF!!!
             });
         }
 
         cityChanged(): void {
-            // todo: this should update this.rxWeatherStore.city
-            console.log(this.city);
+            this.rxWeatherStore.city.onNext(this.city);
         }
     }
 }
