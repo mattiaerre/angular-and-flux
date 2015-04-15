@@ -1,6 +1,5 @@
 ﻿module Widgets.Weather {
     export interface IWeatherStore {
-        //init(config: any): void;
         cities: string[];
         city: string;
         weather: any;

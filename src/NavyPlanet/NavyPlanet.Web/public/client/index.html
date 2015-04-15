@@ -21,6 +21,19 @@
             </div>
         </div>
         <hr />
+        <div ng-controller="RxWeatherController as vm">
+            <h2>{{vm.model.name}}</h2>
+            <div>
+                <p>
+                    <div>{{vm.model.weather[0].main}}</div>
+                    <div>{{vm.model.weather[0].description}}</div>
+                </p>
+            </div>
+            <div>
+                <select ng-options="city as city for city in vm.cities" ng-model="vm.city" ng-change="vm.cityChanged()"></select>
+            </div>
+        </div>
+        <hr />
         <div ng-controller="GeoIpController as vm">
             <h2>{{vm.model.ip}}</h2>
             <ul>

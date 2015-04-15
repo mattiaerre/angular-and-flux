@@ -104,6 +104,8 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="public\client\app\widgets\geo-ip\geo-ip-controller.ts" />
     <TypeScriptCompile Include="public\client\app\widgets\geo-ip\geo-ip-store.ts" />
+    <TypeScriptCompile Include="public\client\app\widgets\rx-weather\rx-weather-controller.ts" />
+    <TypeScriptCompile Include="public\client\app\widgets\rx-weather\rx-weather-store.ts" />
     <TypeScriptCompile Include="public\client\app\widgets\weather\weather-controller.ts" />
     <TypeScriptCompile Include="public\client\app\widgets\weather\weather-store.ts" />
     <TypeScriptCompile Include="public\test\app\blocks\dispatcher.spec.ts">
@@ -135,6 +137,7 @@
     <Folder Include="public\client\app\widgets\" />
     <Folder Include="public\client\app\widgets\geo-ip\" />
     <Folder Include="public\client\app\widgets\emojis\" />
+    <Folder Include="public\client\app\widgets\rx-weather\" />
     <Folder Include="public\client\app\widgets\weather\" />
     <Folder Include="public\client\content\" />
     <Folder Include="public\test\" />

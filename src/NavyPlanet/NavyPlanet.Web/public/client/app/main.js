@@ -17,6 +17,7 @@ require.config({
 // navy-planet.lib
 require(['angular', 'app.config', 'rxjs', 'blocks/dispatcher', 'blocks/http-service', 'domain/domain', 
     'widgets/weather/weather-store', 'widgets/weather/weather-controller', 
+    'widgets/rx-weather/rx-weather-store', 'widgets/rx-weather/rx-weather-controller', 
     'widgets/geo-ip/geo-ip-store', 'widgets/geo-ip/geo-ip-controller',
     'widgets/emojis/emojis-store', 'widgets/emojis/emojis-controller'], function (angular, config) {
     var appName = 'navy-planet';
@@ -25,6 +26,8 @@ require(['angular', 'app.config', 'rxjs', 'blocks/dispatcher', 'blocks/http-serv
     angular.module(appName).service('httpService', Blocks.HttpService);
     angular.module(appName).service('weatherStore', Widgets.Weather.WeatherStore);
     angular.module(appName).controller('WeatherController', Widgets.Weather.WeatherController);
+    angular.module(appName).service('rxWeatherStore', Widgets.RxWeather.RxWeatherStore);
+    angular.module(appName).controller('RxWeatherController', Widgets.RxWeather.RxWeatherController);
     angular.module(appName).service('geoIpStore', Widgets.GeoIp.GeoIpStore);
     angular.module(appName).controller('GeoIpController', Widgets.GeoIp.GeoIpController);
     angular.module(appName).service('emojisStore', Widgets.Emojis.EmojisStore);
@@ -34,7 +37,7 @@ require(['angular', 'app.config', 'rxjs', 'blocks/dispatcher', 'blocks/http-serv
     
     angular.module(appName).run(bootstrap);
     
-    bootstrap.$inject = ['$log', 'dispatcher', 'weatherStore', 'geoIpStore', 'emojisStore'];
+    bootstrap.$inject = ['$log', 'dispatcher', 'weatherStore', 'rxWeatherStore', 'geoIpStore', 'emojisStore'];
     function bootstrap($log, dispatcher, weatherStore, geoIpStore, emojisStore) {
         $log.info(appName + ' is bootstrapping');
         
