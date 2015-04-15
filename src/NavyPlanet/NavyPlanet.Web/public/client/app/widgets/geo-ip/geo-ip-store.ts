@@ -1,18 +1,16 @@
 ﻿module Widgets.GeoIp {
     export interface IGeoIpStore {
-        init(config: any): void;
         geoIp: any;
     }
 
     export class GeoIpStore implements IGeoIpStore {
-        constructor(private dispatcher: Blocks.IDispatcher, private httpService: Blocks.IHttpService) { }
+        constructor(private dispatcher: Blocks.IDispatcher, private httpService: Blocks.IHttpService, private config: any) {
+            this.init();
+        }
 
         geoIp: any = null;
 
-        private config: any = null;
-
-        init(config: any): void {
-            this.config = config;
+        private init(): void {
             this.dispatcher.register((payload: Domain.Payload) => this.register(payload));
         }
 

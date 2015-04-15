@@ -3,21 +3,18 @@ var Widgets;
     var Emojis;
     (function (Emojis) {
         var EmojisStore = (function () {
-            function EmojisStore($http) {
+            function EmojisStore($http, config) {
                 this.$http = $http;
+                this.config = config;
+                this.init();
             }
             EmojisStore.prototype.init = function () {
                 var _this = this;
-                var requestStream = Rx.Observable.return('https://api.github.com/emojis');
-                requestStream.subscribe(function (requestUrl) {
-                    _this.emojis = Rx.Observable.create(function (observer) {
-                        _this.$http.get(requestUrl).success(function (data, status, headers, config) {
-                            observer.onNext(data);
-                        }).error(function (data, status, headers, config) {
-                            observer.onError(data);
-                        });
-                    });
+                var requestStream = Rx.Observable.return(this.config.emojisEndpoint);
+                var responseStream = requestStream.flatMap(function (requestUrl) {
+                    return Rx.Observable.fromPromise(_this.$http.get(requestUrl));
                 });
+                this.emojis = responseStream;
             };
             return EmojisStore;
         })();

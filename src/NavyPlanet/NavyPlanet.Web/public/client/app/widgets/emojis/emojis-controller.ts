@@ -7,8 +7,8 @@
         }
 
         private init(): void {
-            this.emojisStore.emojis.subscribe(data => {
-                this.emojis = data;
+            this.emojisStore.emojis.subscribe(stream => {
+                this.emojis = stream.data;
             });
         }
     }

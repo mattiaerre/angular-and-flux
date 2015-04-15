@@ -9,8 +9,8 @@ var Widgets;
             }
             EmojisController.prototype.init = function () {
                 var _this = this;
-                this.emojisStore.emojis.subscribe(function (data) {
-                    _this.emojis = data;
+                this.emojisStore.emojis.subscribe(function (stream) {
+                    _this.emojis = stream.data;
                 });
             };
             return EmojisController;

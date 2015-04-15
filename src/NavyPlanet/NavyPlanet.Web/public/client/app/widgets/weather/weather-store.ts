@@ -1,22 +1,21 @@
 ﻿module Widgets.Weather {
     export interface IWeatherStore {
-        init(config: any): void;
+        //init(config: any): void;
         cities: string[];
         city: string;
         weather: any;
     }
 
     export class WeatherStore implements IWeatherStore {
-        constructor(private dispatcher: Blocks.IDispatcher, private httpService: Blocks.IHttpService) { }
+        constructor(private dispatcher: Blocks.IDispatcher, private httpService: Blocks.IHttpService, private config: any) {
+            this.init();
+        }
 
         cities: string[] = null;
         city: string = null;
         weather: any = null;
 
-        private config: any = null;
-
-        init(config: any) {
-            this.config = config;
+        private init() {
             this.cities = this.config.cities;
             this.city = this.config.city;
             this.dispatcher.register((payload: Domain.Payload) => this.register(payload));

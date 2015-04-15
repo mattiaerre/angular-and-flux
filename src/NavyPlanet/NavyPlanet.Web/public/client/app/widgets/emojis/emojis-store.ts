@@ -1,24 +1,23 @@
 ﻿module Widgets.Emojis {
     export interface IEmojisStore {
         emojis: Rx.Observable<any>;
-        init():void;
     }
 
     export class EmojisStore implements IEmojisStore {
         emojis: Rx.Observable<any>;
 
-        constructor(private $http: any) {
+        constructor(private $http: any, private config: any) {
+            this.init();
         }
 
-        init(): void {
-            var requestStream = Rx.Observable.return('https://api.github.com/emojis');
-            requestStream.subscribe(requestUrl => {
-                this.emojis = Rx.Observable.create(observer => {
-                    this.$http.get(requestUrl)
-                        .success((data, status, headers, config) => { observer.onNext(data); })
-                        .error((data, status, headers, config) => { observer.onError(data); });
-                });
+        private init(): void {
+            var requestStream = Rx.Observable.return(this.config.emojisEndpoint);
+
+            var responseStream = requestStream.flatMap(requestUrl => {
+                return Rx.Observable.fromPromise(this.$http.get(requestUrl));
             });
+
+            this.emojis = responseStream;
         }
     }
 }

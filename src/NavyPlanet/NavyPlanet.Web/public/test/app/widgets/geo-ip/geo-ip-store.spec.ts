@@ -12,7 +12,7 @@ describe('given a geo ip store',() => {
 
     beforeEach(() => {
         dispatcher = new Blocks.Dispatcher();
-        store = new Widgets.GeoIp.GeoIpStore(dispatcher, fakeHttpService);
+        store = new Widgets.GeoIp.GeoIpStore(dispatcher, fakeHttpService, {});
     });
 
     describe('when calling init',() => {

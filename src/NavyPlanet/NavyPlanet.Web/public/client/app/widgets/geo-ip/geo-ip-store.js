@@ -3,15 +3,15 @@ var Widgets;
     var GeoIp;
     (function (GeoIp) {
         var GeoIpStore = (function () {
-            function GeoIpStore(dispatcher, httpService) {
+            function GeoIpStore(dispatcher, httpService, config) {
                 this.dispatcher = dispatcher;
                 this.httpService = httpService;
-                this.geoIp = null;
-                this.config = null;
-            }
-            GeoIpStore.prototype.init = function (config) {
-                var _this = this;
                 this.config = config;
+                this.geoIp = null;
+                this.init();
+            }
+            GeoIpStore.prototype.init = function () {
+                var _this = this;
                 this.dispatcher.register(function (payload) { return _this.register(payload); });
             };
             GeoIpStore.prototype.register = function (payload) {

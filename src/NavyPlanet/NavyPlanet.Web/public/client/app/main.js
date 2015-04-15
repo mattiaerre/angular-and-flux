@@ -30,6 +30,8 @@ require(['angular', 'app.config', 'rxjs', 'blocks/dispatcher', 'blocks/http-serv
     angular.module(appName).service('emojisStore', Widgets.Emojis.EmojisStore);
     angular.module(appName).controller('EmojisController', Widgets.Emojis.EmojisController);
     
+    angular.module(appName).factory('config', function () { return config; });
+    
     angular.module(appName).run(bootstrap);
     
     bootstrap.$inject = ['$log', 'dispatcher', 'weatherStore', 'geoIpStore', 'emojisStore'];
@@ -39,9 +41,5 @@ require(['angular', 'app.config', 'rxjs', 'blocks/dispatcher', 'blocks/http-serv
         dispatcher.register(function (payload) {
             $log.info('payload: ' + JSON.stringify(payload));
         });
-        
-        weatherStore.init(config);
-        geoIpStore.init(config);
-        emojisStore.init();
     }
 });

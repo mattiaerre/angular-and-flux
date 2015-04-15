@@ -12,23 +12,23 @@ describe('given a geo ip store', function () {
     } };
     beforeEach(function () {
         dispatcher = new Blocks.Dispatcher();
-        store = new Widgets.GeoIp.GeoIpStore(dispatcher, fakeHttpService);
+        store = new Widgets.GeoIp.GeoIpStore(dispatcher, fakeHttpService, {});
     });
     describe('when calling init', function () {
         it('then it should be able to emit the GeoIpLoaded event upon receiving a GeoIpControllerReady event', function () {
             var count = 0;
             dispatcher.register(function (payload) {
                 count++;
-                expect(payload.actionType).toBe(2 /* Event */);
+                expect(payload.actionType).toBe(Domain.ActionType.Event);
                 if (count == 1) {
-                    expect(payload.body.actionKey).toBe(4 /* GeoIpControllerReady */);
+                    expect(payload.body.actionKey).toBe(Domain.ActionKey.GeoIpControllerReady);
                 }
                 else if (count == 2) {
-                    expect(payload.body.actionKey).toBe(5 /* GeoIpLoaded */);
+                    expect(payload.body.actionKey).toBe(Domain.ActionKey.GeoIpLoaded);
                 }
             });
             store.init(config);
-            dispatcher.dispatch(new Domain.Payload(2 /* Event */, new Domain.PayloadBody(4 /* GeoIpControllerReady */, null)));
+            dispatcher.dispatch(new Domain.Payload(Domain.ActionType.Event, new Domain.PayloadBody(Domain.ActionKey.GeoIpControllerReady, null)));
             expect(count).toBe(2); // info: in order to make sure that 'GeoIpLoaded' has been dispatched
         });
     });

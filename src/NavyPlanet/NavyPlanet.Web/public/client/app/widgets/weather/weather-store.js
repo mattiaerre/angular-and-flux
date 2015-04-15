@@ -3,17 +3,17 @@ var Widgets;
     var Weather;
     (function (Weather) {
         var WeatherStore = (function () {
-            function WeatherStore(dispatcher, httpService) {
+            function WeatherStore(dispatcher, httpService, config) {
                 this.dispatcher = dispatcher;
                 this.httpService = httpService;
+                this.config = config;
                 this.cities = null;
                 this.city = null;
                 this.weather = null;
-                this.config = null;
+                this.init();
             }
-            WeatherStore.prototype.init = function (config) {
+            WeatherStore.prototype.init = function () {
                 var _this = this;
-                this.config = config;
                 this.cities = this.config.cities;
                 this.city = this.config.city;
                 this.dispatcher.register(function (payload) { return _this.register(payload); });
