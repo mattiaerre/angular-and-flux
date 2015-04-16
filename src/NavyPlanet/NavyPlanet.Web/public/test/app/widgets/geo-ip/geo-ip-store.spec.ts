@@ -5,19 +5,18 @@
 
 describe('given a geo ip store',() => {
     var dispatcher;
-    var store;
+    var store: Widgets.GeoIp.IGeoIpStore;
     var config = { geoipEndpoint: '/an/enpoint' };
     var response = { data:'something' };
     var fakeHttpService : Blocks.IHttpService = { getByUrl : (url, callback) => { callback(response); } };
 
     beforeEach(() => {
-        dispatcher = new Blocks.Dispatcher();
-        store = new Widgets.GeoIp.GeoIpStore(dispatcher, fakeHttpService, {});
     });
 
     describe('when calling init',() => {
         it('then it should be able to emit the GeoIpLoaded event upon receiving a GeoIpControllerReady event',() => {
             var count = 0;
+            dispatcher = new Blocks.Dispatcher();
             dispatcher.register((payload: Domain.Payload) => {
                 count++;
                 expect(payload.actionType).toBe(Domain.ActionType.Event);
@@ -28,7 +27,7 @@ describe('given a geo ip store',() => {
                 }
             });
 
-            store.init(config);
+            store = new Widgets.GeoIp.GeoIpStore(dispatcher, fakeHttpService, config);
 
             dispatcher.dispatch(new Domain.Payload(Domain.ActionType.Event, new Domain.PayloadBody(Domain.ActionKey.GeoIpControllerReady, null)));
 
