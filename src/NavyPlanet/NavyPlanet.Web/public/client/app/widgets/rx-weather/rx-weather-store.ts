@@ -1,34 +1,26 @@
 ﻿module Widgets.RxWeather {
     export interface IRxWeatherStore {
-        cities: Rx.Observable<any>;
         city: Rx.Subject<any>;
         weather: Rx.Subject<any>;
     }
 
     export class RxWeatherStore implements IRxWeatherStore {
-        cities: Rx.Observable<any>;
         city: Rx.Subject<any>;
         weather: Rx.Subject<any>;
 
-        constructor(private $http: any, private config: any) {
+        constructor(private $http: any, private $log: any, private config: any) {
             this.init();
         }
 
-        private init() {
-            this.cities = Rx.Observable.return(this.config.cities);
-
+        private init(): void {
             this.city = new Rx.Subject();
             this.city.subscribe(city => {
-                // do ajax call and update this.weather
-                var request = Rx.Observable.return(this.config.openweathermapEndpoint + city);
-                var response = request.flatMap(requestUrl => {
-                    return Rx.Observable.fromPromise(this.$http.get(requestUrl));
-                });
-                this.weather.onNext(response);
+                var requestUrl = this.config.openweathermapEndpoint + city;
+                this.$http.get(requestUrl)
+                    .success((data, status, headers, config) => { this.weather.onNext(data); })
+                    .error((data, status, headers, config) => { this.$log.error(data); });
             });
-
             this.weather = new Rx.Subject();
-            this.city.onNext(this.config.city);
         }
     }
 }

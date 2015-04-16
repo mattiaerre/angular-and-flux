@@ -3,9 +3,10 @@ var Widgets;
     var RxWeather;
     (function (RxWeather) {
         var RxWeatherController = (function () {
-            function RxWeatherController(rxWeatherStore, $log) {
+            function RxWeatherController(rxWeatherStore, $log, config) {
                 this.rxWeatherStore = rxWeatherStore;
                 this.$log = $log;
+                this.config = config;
                 this.cities = [];
                 this.city = null;
                 this.weather = null;
@@ -13,12 +14,12 @@ var Widgets;
             }
             RxWeatherController.prototype.init = function () {
                 var _this = this;
-                this.rxWeatherStore.cities.subscribe(function (stream) {
-                    _this.cities = stream;
+                this.cities = this.config.cities;
+                this.city = this.config.city;
+                this.rxWeatherStore.weather.subscribe(function (stream) {
+                    _this.weather = stream;
                 });
-                this.rxWeatherStore.weather.subscribe(function (observable) {
-                    // WTF!!!
-                });
+                this.rxWeatherStore.city.onNext(this.config.city);
             };
             RxWeatherController.prototype.cityChanged = function () {
                 this.rxWeatherStore.city.onNext(this.city);

@@ -1,6 +1,6 @@
 ﻿module Widgets.RxWeather {
     export class RxWeatherController {
-        constructor(private rxWeatherStore: IRxWeatherStore, private $log: any) {
+        constructor(private rxWeatherStore: IRxWeatherStore, private $log: any, private config: any) {
             this.init();
         }
 
@@ -9,12 +9,12 @@
         weather: any = null;
 
         private init(): void {
-            this.rxWeatherStore.cities.subscribe(stream => {
-                this.cities = stream;
+            this.cities = this.config.cities;
+            this.city = this.config.city;
+            this.rxWeatherStore.weather.subscribe(stream => {
+                this.weather = stream;
             });
-            this.rxWeatherStore.weather.subscribe(observable => {
-                // WTF!!!
-            });
+            this.rxWeatherStore.city.onNext(this.config.city);
         }
 
         cityChanged(): void {

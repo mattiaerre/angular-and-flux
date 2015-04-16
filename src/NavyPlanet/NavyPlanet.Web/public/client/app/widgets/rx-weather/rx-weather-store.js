@@ -3,25 +3,24 @@ var Widgets;
     var RxWeather;
     (function (RxWeather) {
         var RxWeatherStore = (function () {
-            function RxWeatherStore($http, config) {
+            function RxWeatherStore($http, $log, config) {
                 this.$http = $http;
+                this.$log = $log;
                 this.config = config;
                 this.init();
             }
             RxWeatherStore.prototype.init = function () {
                 var _this = this;
-                this.cities = Rx.Observable.return(this.config.cities);
                 this.city = new Rx.Subject();
                 this.city.subscribe(function (city) {
-                    // do ajax call and update this.weather
-                    var request = Rx.Observable.return(_this.config.openweathermapEndpoint + city);
-                    var response = request.flatMap(function (requestUrl) {
-                        return Rx.Observable.fromPromise(_this.$http.get(requestUrl));
+                    var requestUrl = _this.config.openweathermapEndpoint + city;
+                    _this.$http.get(requestUrl).success(function (data, status, headers, config) {
+                        _this.weather.onNext(data);
+                    }).error(function (data, status, headers, config) {
+                        _this.$log.error(data);
                     });
-                    _this.weather.onNext(response);
                 });
                 this.weather = new Rx.Subject();
-                this.city.onNext(this.config.city);
             };
             return RxWeatherStore;
         })();
