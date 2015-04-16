@@ -7,6 +7,8 @@ var Widgets;
                 this.$http = $http;
                 this.$log = $log;
                 this.config = config;
+                this.city = null;
+                this.weather = null;
                 this.init();
             }
             RxWeatherStore.prototype.init = function () {

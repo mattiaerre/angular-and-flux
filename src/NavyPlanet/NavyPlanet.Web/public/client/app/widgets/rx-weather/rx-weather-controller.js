@@ -7,7 +7,7 @@ var Widgets;
                 this.rxWeatherStore = rxWeatherStore;
                 this.$log = $log;
                 this.config = config;
-                this.cities = [];
+                this.cities = null;
                 this.city = null;
                 this.weather = null;
                 this.init();
@@ -19,9 +19,9 @@ var Widgets;
                 this.rxWeatherStore.weather.subscribe(function (stream) {
                     _this.weather = stream;
                 });
-                this.rxWeatherStore.city.onNext(this.config.city);
+                this.changeCity();
             };
-            RxWeatherController.prototype.cityChanged = function () {
+            RxWeatherController.prototype.changeCity = function () {
                 this.rxWeatherStore.city.onNext(this.city);
             };
             return RxWeatherController;

@@ -5,8 +5,8 @@
     }
 
     export class RxWeatherStore implements IRxWeatherStore {
-        city: Rx.Subject<any>;
-        weather: Rx.Subject<any>;
+        city: Rx.Subject<any> = null;
+        weather: Rx.Subject<any> = null;
 
         constructor(private $http: any, private $log: any, private config: any) {
             this.init();
