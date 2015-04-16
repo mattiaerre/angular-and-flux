@@ -15,8 +15,8 @@
         private init(): void {
             this.city = new Rx.Subject();
             this.city.subscribe(city => {
-                var requestUrl = this.config.openweathermapEndpoint + city;
-                this.$http.get(requestUrl)
+                var url = this.config.openweathermapEndpoint + city;
+                this.$http.get(url)
                     .success((data, status, headers, config) => { this.weather.onNext(data); })
                     .error((data, status, headers, config) => { this.$log.error(data); });
             });

@@ -11,8 +11,8 @@
         private init(): void {
             this.cities = this.config.cities;
             this.city = this.config.city;
-            this.rxWeatherStore.weather.subscribe(stream => {
-                this.weather = stream;
+            this.rxWeatherStore.weather.subscribe(data => {
+                this.weather = data;
             });
             this.changeCity();
         }

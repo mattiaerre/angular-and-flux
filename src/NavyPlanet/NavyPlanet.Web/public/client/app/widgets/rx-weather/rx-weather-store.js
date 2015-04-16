@@ -15,8 +15,8 @@ var Widgets;
                 var _this = this;
                 this.city = new Rx.Subject();
                 this.city.subscribe(function (city) {
-                    var requestUrl = _this.config.openweathermapEndpoint + city;
-                    _this.$http.get(requestUrl).success(function (data, status, headers, config) {
+                    var url = _this.config.openweathermapEndpoint + city;
+                    _this.$http.get(url).success(function (data, status, headers, config) {
                         _this.weather.onNext(data);
                     }).error(function (data, status, headers, config) {
                         _this.$log.error(data);

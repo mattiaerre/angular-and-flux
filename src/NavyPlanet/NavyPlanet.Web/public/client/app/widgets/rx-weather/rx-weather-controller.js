@@ -16,8 +16,8 @@ var Widgets;
                 var _this = this;
                 this.cities = this.config.cities;
                 this.city = this.config.city;
-                this.rxWeatherStore.weather.subscribe(function (stream) {
-                    _this.weather = stream;
+                this.rxWeatherStore.weather.subscribe(function (data) {
+                    _this.weather = data;
                 });
                 this.changeCity();
             };
