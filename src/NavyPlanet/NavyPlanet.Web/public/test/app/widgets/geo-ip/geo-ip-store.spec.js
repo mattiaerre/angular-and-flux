@@ -18,16 +18,16 @@ describe('given a geo ip store', function () {
             dispatcher = new Blocks.Dispatcher();
             dispatcher.register(function (payload) {
                 count++;
-                expect(payload.actionType).toBe(Domain.ActionType.Event);
+                expect(payload.actionType).toBe(2 /* Event */);
                 if (count == 1) {
-                    expect(payload.body.actionKey).toBe(Domain.ActionKey.GeoIpControllerReady);
+                    expect(payload.body.actionKey).toBe(4 /* GeoIpControllerReady */);
                 }
                 else if (count == 2) {
-                    expect(payload.body.actionKey).toBe(Domain.ActionKey.GeoIpLoaded);
+                    expect(payload.body.actionKey).toBe(5 /* GeoIpLoaded */);
                 }
             });
             store = new Widgets.GeoIp.GeoIpStore(dispatcher, fakeHttpService, config);
-            dispatcher.dispatch(new Domain.Payload(Domain.ActionType.Event, new Domain.PayloadBody(Domain.ActionKey.GeoIpControllerReady, null)));
+            dispatcher.dispatch(new Domain.Payload(2 /* Event */, new Domain.PayloadBody(4 /* GeoIpControllerReady */, null)));
             expect(count).toBe(2); // info: in order to make sure that 'GeoIpLoaded' has been dispatched
         });
     });

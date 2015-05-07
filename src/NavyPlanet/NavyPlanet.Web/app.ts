@@ -1,6 +1,7 @@
 ﻿import express = require('express');
 import routes = require('./routes/index');
 import user = require('./routes/user');
+import playground = require('./routes/playground');
 import http = require('http');
 import path = require('path');
 
@@ -29,6 +30,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/playground', playground.list);
 
 http.createServer(app).listen(app.get('port'), () => {
     console.log('Express server listening on port ' + app.get('port'));

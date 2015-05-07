@@ -91,6 +91,9 @@
     <TypeScriptCompile Include="..\NavyPlanet.ReactiveProgramming.Web\Scripts\typings\rx\rx.virtualtime.d.ts">
       <Link>Scripts\typings\rx\rx.virtualtime.d.ts</Link>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="..\NavyPlanet.ReactiveProgramming.Web\Scripts\typings\twitter\twitter.d.ts">
+      <Link>Scripts\typings\twitter\twitter.d.ts</Link>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="public\client\app\blocks\http-service.ts" />
     <TypeScriptCompile Include="public\client\app\domain\domain.ts" />
@@ -114,7 +117,9 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="public\client\app\blocks\dispatcher.ts" />
     <TypeScriptCompile Include="public\test\app\widgets\geo-ip\geo-ip-store.spec.ts" />
+    <TypeScriptCompile Include="exports.ts" />
     <TypeScriptCompile Include="routes\index.ts" />
+    <TypeScriptCompile Include="routes\playground.ts" />
     <TypeScriptCompile Include="routes\user.ts" />
     <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jasmine\jasmine.d.ts" />
@@ -155,6 +160,7 @@
     <Folder Include="Scripts\typings\" />
     <Folder Include="Scripts\typings\express\" />
     <Folder Include="Scripts\typings\jasmine\" />
+    <Folder Include="Scripts\typings\twitter\" />
     <Folder Include="Scripts\typings\rx\" />
     <Folder Include="Scripts\typings\node\" />
     <Folder Include="Scripts\typings\stylus\" />

@@ -96,6 +96,7 @@
     <TypeScriptCompile Include="Scripts\typings\rx\rx.time-lite.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\rx\rx.time.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\rx\rx.virtualtime.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\twitter\twitter.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

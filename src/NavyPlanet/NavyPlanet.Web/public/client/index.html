@@ -11,10 +11,10 @@
         <div ng-controller="WeatherController as vm">
             <h2>{{vm.model.name}}</h2>
             <div>
-                <p>
+                <div>
                     <div>{{vm.model.weather[0].main}}</div>
                     <div>{{vm.model.weather[0].description}}</div>
-                </p>
+                </div>
             </div>
             <div>
                 <select ng-options="city as city for city in vm.cities" ng-model="vm.city" ng-change="vm.cityChanged()"></select>
@@ -24,10 +24,13 @@
         <div ng-controller="RxWeatherController as vm">
             <h2>{{vm.weather.name}}</h2>
             <div>
-                <p>
+                <div>
                     <div>{{vm.weather.weather[0].main}}</div>
                     <div>{{vm.weather.weather[0].description}}</div>
-                </p>
+                </div>
+            </div>
+            <div>
+                <textarea rows="10" cols="75">{{vm.weather}}</textarea>
             </div>
             <div>
                 <select ng-options="city as city for city in vm.cities" ng-model="vm.city" ng-change="vm.changeCity()"></select>
@@ -47,7 +50,7 @@
                 <li>{{vm.model.country_code3}}</li>
             </ul>
         </div>
-        <hr/>
+        <hr />
         <div ng-controller="EmojisController as vm">
             <img ng-src="{{vm.emojis.apple}}" />
         </div>
