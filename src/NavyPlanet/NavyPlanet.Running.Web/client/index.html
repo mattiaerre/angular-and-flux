@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>index.html</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.js"></script>
+    <script src="app/pace-calculator/pace-calculator.controller.js"></script>
+    <script src="app/app.module.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container" ng-app="running-app">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>running app</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>pace calculator</h2>
+            </div>
+        </div>
+        <div class="row" ng-controller="PaceCalculatorController as vm">
+            <div class="col-xs-8 col-sm-4">
+                <div class="pull-right">
+                    <input type="number" min="2" max="10" step="1" ng-model="vm.minutes" ng-change="vm.toKph()">:<input type="number" type="number" min="0" max="59" step="1" ng-model="vm.seconds" ng-change="vm.toKph()">
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-2">min/km</div>
+            <div class="col-xs-8 col-sm-4">
+                <div class="pull-right">
+                    <strong>{{vm.kph}}</strong>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-2">kph</div>
+        </div>
+    </div>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments);
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g;
+            m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-54446639-4', 'auto');
+        ga('send', 'pageview');
+    </script>
+</body>
+</html>
